@@ -39,21 +39,21 @@ class Lexer:
         self.tokens = []
         self.errors = []
 
-        def preprocess(self):
-        # 处理 #include 和 #define 预处理指令
-        # 移除 #include 指令
-            self.code = re.sub(r'#include\s*<.*?>', '', self.code)
+    def preprocess(self):
+    # 处理 #include 和 #define 预处理指令
+    # 移除 #include 指令
+        self.code = re.sub(r'#include\s*<.*?>', '', self.code)
 
-            # 处理 #define 指令，可以进一步扩展以支持宏定义
-            defines = {}
-            define_matches = re.findall(r'#define\s+(\w+)\s+(.+)', self.code)
-            for name, value in define_matches:
-                defines[name] = value.strip()
-            for name, value in defines.items():
-                self.code = re.sub(r'\b' + name + r'\b', value, self.code)
-            # 移除 #define 指令行
-            self.code = re.sub(r'#define\s+\w+\s+.*', '', self.code)
-    
+        # 处理 #define 指令，可以进一步扩展以支持宏定义
+        defines = {}
+        define_matches = re.findall(r'#define\s+(\w+)\s+(.+)', self.code)
+        for name, value in define_matches:
+            defines[name] = value.strip()
+        for name, value in defines.items():
+            self.code = re.sub(r'\b' + name + r'\b', value, self.code)
+        # 移除 #define 指令行
+        self.code = re.sub(r'#define\s+\w+\s+.*', '', self.code)
+
     def tokenize(self):
         self.preprocess()  # 进行预处理
         line_number = 1
