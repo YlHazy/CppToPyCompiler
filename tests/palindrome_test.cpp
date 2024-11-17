@@ -13,6 +13,10 @@ bool is_palindrome(const string &s) {
 int main() {
     string s;
     cin >> s;
-    cout << (is_palindrome(s) ? "True" : "False") << endl;
+    if (is_palindrome(s)) {
+        cout << "True" << endl;
+    } else {
+        cout << "False" << endl;
+    }
     return 0;
 }

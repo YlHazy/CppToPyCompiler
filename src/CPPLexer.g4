@@ -1,398 +1,130 @@
-// $antlr-format alignTrailingComments true, columnLimit 150, maxEmptyLinesToKeep 1, reflowComments false, useTab false
-// $antlr-format allowShortRulesOnASingleLine true, allowShortBlocksOnASingleLine true, minEmptyLines 0, alignSemicolons ownLine
-// $antlr-format alignColons trailing, singleLineOverrulesHangingColon true, alignLexerCommands true, alignLabels true, alignTrailers true
-
 lexer grammar CPPLexer;
 
-IntegerLiteral:
-    DecimalLiteral Integersuffix?
-    | OctalLiteral Integersuffix?
-    | HexadecimalLiteral Integersuffix?
-    | BinaryLiteral Integersuffix?
-;
+// Literals
+IntegerLiteral: ('-'? DecimalLiteral) | HexadecimalLiteral | BinaryLiteral | '0';
+FloatingLiteral: '-'? (Fractionalconstant Exponentpart? Floatingsuffix? | Digitsequence Exponentpart Floatingsuffix?);
+BooleanLiteral: 'true' | 'false';
+PointerLiteral: 'nullptr';
 
-CharacterLiteral: ('u' | 'U' | 'L')? '\'' Cchar+ '\'';
-
-FloatingLiteral:
-    Fractionalconstant Exponentpart? Floatingsuffix?
-    | Digitsequence Exponentpart Floatingsuffix?
-;
-
-StringLiteral: Encodingprefix? (Rawstring | '"' Schar* '"');
-
-BooleanLiteral: False_ | True_;
-
-PointerLiteral: Nullptr;
-
-UserDefinedLiteral:
-    UserDefinedIntegerLiteral
-    | UserDefinedFloatingLiteral
-    | UserDefinedStringLiteral
-    | UserDefinedCharacterLiteral
-;
-
-MultiLineMacro: '#' (~[\n]*? '\\' '\r'? '\n')+ ~ [\n]+ -> channel (HIDDEN);
-
-Directive: '#' ~ [\n]* -> channel (HIDDEN);
-/*Keywords*/
-
-Alignas: 'alignas';
-
-Alignof: 'alignof';
-
-Asm: 'asm';
-
+// Keywords
 Auto: 'auto';
-
 Bool: 'bool';
-
 Break: 'break';
-
+Cin: 'cin';
+Cout: 'cout';
 Case: 'case';
-
 Catch: 'catch';
-
 Char: 'char';
-
-Char16: 'char16_t';
-
-Char32: 'char32_t';
-
-Class: 'class';
-
 Const: 'const';
-
-Constexpr: 'constexpr';
-
-Const_cast: 'const_cast';
-
-Continue: 'continue';
-
 Decltype: 'decltype';
-
 Default: 'default';
-
 Delete: 'delete';
-
 Do: 'do';
-
 Double: 'double';
-
-Dynamic_cast: 'dynamic_cast';
-
+ElseIf: 'else if';
 Else: 'else';
-
 Enum: 'enum';
-
+EndLine: 'endl';
 Explicit: 'explicit';
-
 Export: 'export';
-
 Extern: 'extern';
-
-//DO NOT RENAME - PYTHON NEEDS True and False
-False_: 'false';
-
 Final: 'final';
-
 Float: 'float';
-
 For: 'for';
-
 Friend: 'friend';
-
-Goto: 'goto';
-
 If: 'if';
-
-Inline: 'inline';
-
 Int: 'int';
-
+Include: '#include';
 Long: 'long';
-
-Mutable: 'mutable';
-
+Main: 'main';
 Namespace: 'namespace';
-
-New: 'new';
-
-Noexcept: 'noexcept';
-
-Nullptr: 'nullptr';
-
-Operator: 'operator';
-
-Override: 'override';
-
-Private: 'private';
-
-Protected: 'protected';
-
-Public: 'public';
-
-Register: 'register';
-
-Reinterpret_cast: 'reinterpret_cast';
-
 Return: 'return';
-
+String: 'string';
 Short: 'short';
-
 Signed: 'signed';
-
-Sizeof: 'sizeof';
-
 Static: 'static';
-
-Static_assert: 'static_assert';
-
-Static_cast: 'static_cast';
-
 Struct: 'struct';
-
 Switch: 'switch';
-
-Template: 'template';
-
-This: 'this';
-
-Thread_local: 'thread_local';
-
-Throw: 'throw';
-
-//DO NOT RENAME - PYTHON NEEDS True and False
-True_: 'true';
-
+Stack: 'stack';
+Size_t: 'size_t';
 Try: 'try';
-
 Typedef: 'typedef';
-
 Typeid_: 'typeid';
-
-Typename_: 'typename';
-
 Union: 'union';
-
 Unsigned: 'unsigned';
-
 Using: 'using';
-
-Virtual: 'virtual';
-
 Void: 'void';
-
-Volatile: 'volatile';
-
-Wchar: 'wchar_t';
-
+Vector: 'vector';
 While: 'while';
-/*Operators*/
 
+// Operators
 LeftParen: '(';
-
 RightParen: ')';
-
-LeftBracket: '[';
-
-RightBracket: ']';
-
 LeftBrace: '{';
-
 RightBrace: '}';
-
+LeftBrackets: '[';
+RightBrackets: ']';
 Plus: '+';
-
 Minus: '-';
-
 Star: '*';
-
 Div: '/';
-
 Mod: '%';
-
 Caret: '^';
-
 And: '&';
-
 Or: '|';
-
 Tilde: '~';
-
 Not: '!' | 'not';
-
 Assign: '=';
-
+Stdin: '>>';
+Stdout: '<<';
 Less: '<';
-
 Greater: '>';
-
-PlusAssign: '+=';
-
-MinusAssign: '-=';
-
-StarAssign: '*=';
-
-DivAssign: '/=';
-
-ModAssign: '%=';
-
-XorAssign: '^=';
-
-AndAssign: '&=';
-
-OrAssign: '|=';
-
-LeftShiftAssign: '<<=';
-
-RightShiftAssign: '>>=';
-
 Equal: '==';
-
 NotEqual: '!=';
-
 LessEqual: '<=';
-
 GreaterEqual: '>=';
-
 AndAnd: '&&' | 'and';
-
 OrOr: '||' | 'or';
-
 PlusPlus: '++';
-
 MinusMinus: '--';
-
+PlusEqual: '+=';
+MinusEqual: '-=';
+StarEqual: '*=';
+DivEqual: '/=';
 Comma: ',';
-
-ArrowStar: '->*';
-
 Arrow: '->';
-
-Question: '?';
-
+Semi: ';';
+Dot: '.';
+DoubleQuotation: '"';
 Colon: ':';
 
-Doublecolon: '::';
 
-Semi: ';';
+// Const value of char and string
+EscapedChar: '\\' ('n' | 't' | '\\' | '\'' | '"' | 'r' | 'b' | 'f' | 'v' | '0');
 
-Dot: '.';
+CharLiteral: '\'' (EscapedChar | ~[\r\n\\])? '\'';
+StringLiteral: '"' (EscapedChar | ~[\r\n\\])* '"';
 
-DotStar: '.*';
-
-Ellipsis: '...';
-
-fragment Hexquad: HEXADECIMALDIGIT HEXADECIMALDIGIT HEXADECIMALDIGIT HEXADECIMALDIGIT;
-
-fragment Universalcharactername: '\\u' Hexquad | '\\U' Hexquad Hexquad;
-
-Identifier:
-    /*
-	 Identifiernondigit | Identifier Identifiernondigit | Identifier DIGIT
-	 */ Identifiernondigit (Identifiernondigit | DIGIT)*
-;
-
-fragment Identifiernondigit: NONDIGIT | Universalcharactername;
+// Identifiers
+Identifier: NONDIGIT (NONDIGIT | DIGIT)*;
 
 fragment NONDIGIT: [a-zA-Z_];
-
 fragment DIGIT: [0-9];
 
-DecimalLiteral: NONZERODIGIT ('\''? DIGIT)*;
-
-OctalLiteral: '0' ('\''? OCTALDIGIT)*;
-
-HexadecimalLiteral: ('0x' | '0X') HEXADECIMALDIGIT ( '\''? HEXADECIMALDIGIT)*;
-
-BinaryLiteral: ('0b' | '0B') BINARYDIGIT ('\''? BINARYDIGIT)*;
+// Literals and fragments
+DecimalLiteral: NONZERODIGIT DIGIT*;
+HexadecimalLiteral: ('0x' | '0X') HEXADECIMALDIGIT+;
+BinaryLiteral: ('0b' | '0B') BINARYDIGIT+;
 
 fragment NONZERODIGIT: [1-9];
-
-fragment OCTALDIGIT: [0-7];
-
 fragment HEXADECIMALDIGIT: [0-9a-fA-F];
-
 fragment BINARYDIGIT: [01];
-
-Integersuffix:
-    Unsignedsuffix Longsuffix?
-    | Unsignedsuffix Longlongsuffix?
-    | Longsuffix Unsignedsuffix?
-    | Longlongsuffix Unsignedsuffix?
-;
-
-fragment Unsignedsuffix: [uU];
-
-fragment Longsuffix: [lL];
-
-fragment Longlongsuffix: 'll' | 'LL';
-
-fragment Cchar: ~ ['\\\r\n] | Escapesequence | Universalcharactername;
-
-fragment Escapesequence: Simpleescapesequence | Octalescapesequence | Hexadecimalescapesequence;
-
-fragment Simpleescapesequence:
-    '\\\''
-    | '\\"'
-    | '\\?'
-    | '\\\\'
-    | '\\a'
-    | '\\b'
-    | '\\f'
-    | '\\n'
-    | '\\r'
-    | '\\' ('\r' '\n'? | '\n')
-    | '\\t'
-    | '\\v'
-;
-
-fragment Octalescapesequence:
-    '\\' OCTALDIGIT
-    | '\\' OCTALDIGIT OCTALDIGIT
-    | '\\' OCTALDIGIT OCTALDIGIT OCTALDIGIT
-;
-
-fragment Hexadecimalescapesequence: '\\x' HEXADECIMALDIGIT+;
-
 fragment Fractionalconstant: Digitsequence? '.' Digitsequence | Digitsequence '.';
-
-fragment Exponentpart: 'e' SIGN? Digitsequence | 'E' SIGN? Digitsequence;
-
-fragment SIGN: [+-];
-
-fragment Digitsequence: DIGIT ('\''? DIGIT)*;
-
+fragment Exponentpart: ('e' | 'E') [+-]? Digitsequence;
 fragment Floatingsuffix: [flFL];
+fragment Digitsequence: DIGIT+;
 
-fragment Encodingprefix: 'u8' | 'u' | 'U' | 'L';
-
-fragment Schar: ~ ["\\\r\n] | Escapesequence | Universalcharactername;
-
-fragment Rawstring: 'R"' ( '\\' ["()] | ~[\r\n (])*? '(' ~[)]*? ')' ( '\\' ["()] | ~[\r\n "])*? '"';
-
-UserDefinedIntegerLiteral:
-    DecimalLiteral Udsuffix
-    | OctalLiteral Udsuffix
-    | HexadecimalLiteral Udsuffix
-    | BinaryLiteral Udsuffix
-;
-
-UserDefinedFloatingLiteral:
-    Fractionalconstant Exponentpart? Udsuffix
-    | Digitsequence Exponentpart Udsuffix
-;
-
-UserDefinedStringLiteral: StringLiteral Udsuffix;
-
-UserDefinedCharacterLiteral: CharacterLiteral Udsuffix;
-
-fragment Udsuffix: Identifier;
-
-Whitespace: [ \t]+ -> skip;
-
-Newline: ('\r' '\n'? | '\n') -> skip;
-
+// Whitespace and comments
+Whitespace: [ \t\r\n]+ -> skip;
 BlockComment: '/*' .*? '*/' -> skip;
-
-LineComment: '//' ~ [\r\n]* -> skip;
+LineComment: '//' ~[\r\n]* -> skip;
