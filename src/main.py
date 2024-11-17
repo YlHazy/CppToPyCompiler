@@ -8,7 +8,7 @@ from tkinter import filedialog, messagebox, scrolledtext
 from antlr4 import *
 from antlr4.error.ErrorListener import ErrorListener
 from antlr4.tree.Trees import Trees
-from CppLexer import CPPLexer
+from CPPLexer import CPPLexer
 from CPPParser import CPPParser
 from antlr4.Token import CommonToken
 
@@ -88,7 +88,7 @@ def syntax_analysis(code):
     parser.addErrorListener(parser_error_listener)
 
     # 开始解析
-    tree = parser.translationUnit()
+    tree = parser.program()
 
     # 检查是否有词法分析错误
     if lexer_error_listener.has_errors():
