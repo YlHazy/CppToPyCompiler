@@ -18,14 +18,11 @@ class CPPParserListener(ParseTreeListener):
     output = """
 def convert_input(user_input):
     try:
-        # 尝试将输入转化为整数
         return int(user_input)
     except ValueError:
         try:
-            # 如果是整数转化失败，尝试将输入转化为浮点数
             return float(user_input)
         except ValueError:
-            # 如果既不是整数也不是浮点数，返回原始字符串
             return user_input
 """
     indent = 0
@@ -253,7 +250,7 @@ def convert_input(user_input):
         # 获取变量名
         declarators = ctx.declarator()  # 获取所有声明的变量
         parent_rule = ctx.parentCtx.parentCtx.parentCtx.parentCtx.getRuleIndex() if ctx.parentCtx else ""
-        print(parent_rule)
+        # print(parent_rule)
         if parent_rule == 49:
             return
         # 对每个变量进行处理
@@ -274,11 +271,11 @@ def convert_input(user_input):
                 if (declarator.initializer().getChild(1).getChild(0).getChild(0)):
                     if (declarator.initializer().getChild(1).getChild(0).getRuleIndex() == 16):
                         function_src = declarator.initializer().getChild(1).getChild(0).getChild(0)
-                        print(f"function_src: {function_src.getText()}")
+                        # print(f"function_src: {function_src.getText()}")
                         if len(function_src.children) == 3:  # 必须是对象.方法的形式
                             object_name = function_src.children[0].getText()  # 对象名称
                             method_name = function_src.children[2].getText()  # 方法名
-                            print(f"object_name: {object_name}, method_name: {method_name}")
+                            # print(f"object_name: {object_name}, method_name: {method_name}")
                             # 如果方法是 "length"，将其转换为 Python 的 len()
                             if method_name == "length":
                                 self.output += f"{self.getIndent()}{var_name} = len({object_name})\n"
@@ -480,13 +477,13 @@ def convert_input(user_input):
                 var_name = declarator.Identifier().getText()  # 获取变量名
                 init_value = declarator.initializer().getText()  # 获取初始化值
                 var_name = var_name.replace("false", "False").replace("true", "True")
-                print(declarator.initializer().getChild(1).getChild(0).getRuleIndex())
+                # print(declarator.initializer().getChild(1).getChild(0).getRuleIndex())
                 function_src = declarator.initializer().getChild(1).getChild(0).getChild(0)
-                print(f"function_src: {function_src.getText()}")
+                # print(f"function_src: {function_src.getText()}")
                 if len(function_src.children) == 3:  # 必须是对象.方法的形式
                     object_name = function_src.children[0].getText()  # 对象名称
                     method_name = function_src.children[2].getText()  # 方法名
-                    print(f"object_name: {object_name}, method_name: {method_name}")
+                    # print(f"object_name: {object_name}, method_name: {method_name}")
                     # 如果方法是 "length"，将其转换为 Python 的 len()
                     if method_name == "length":
                         self.output += f"{self.getIndent()}{var_name} = len({object_name})\n"
