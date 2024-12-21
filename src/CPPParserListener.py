@@ -1,5 +1,6 @@
 # Generated from CPPParser.g4 by ANTLR 4.13.2
 from antlr4 import *
+from CPPLexer import CPPLexer
 if "." in __name__:
     from .CPPParser import CPPParser
 else:
@@ -7,7 +8,8 @@ else:
 
 # This class defines a complete listener for a parse tree produced by CPPParser.
 class CPPParserListener(ParseTreeListener):
-
+    def __init__(self):
+        self.python_code = []
     # Enter a parse tree produced by CPPParser#program.
     def enterProgram(self, ctx:CPPParser.ProgramContext):
         pass
@@ -55,8 +57,8 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#includeDirective.
     def enterIncludeDirective(self, ctx:CPPParser.IncludeDirectiveContext):
-        pass
-
+        if ctx.Include():
+                self.python_code.append(f"import")
     # Exit a parse tree produced by CPPParser#includeDirective.
     def exitIncludeDirective(self, ctx:CPPParser.IncludeDirectiveContext):
         pass
@@ -492,6 +494,19 @@ class CPPParserListener(ParseTreeListener):
     # Exit a parse tree produced by CPPParser#block.
     def exitBlock(self, ctx:CPPParser.BlockContext):
         pass
+    def convert_cpp_to_python(cpp_code):
+        input_stream = InputStream(cpp_code)
+        lexer = CPPLexer(input_stream)
+        stream = CommonTokenStream(lexer)
+        parser = CPPParser(stream)
+        
+        # 获取语法树
+        tree = parser.program()
+
+        # 创建并应用监听器
+        listener = CPPParserListener()
+        walker = ParseTreeWalker()
+        walker.walk(listener, tree)
 
 
 

@@ -11,7 +11,7 @@ from antlr4.tree.Trees import Trees
 from CPPLexer import CPPLexer
 from CPPParser import CPPParser
 from antlr4.Token import CommonToken
-
+from CPPParserListener import CPPParserListener
 # 确保当前目录在模块搜索路径中
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -244,9 +244,32 @@ class CPPParserGUI:
             del self.result_type
 
 def main():
+    cpp_code = """
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        int x = 10;
+        cout << x << endl;
+        return 0;
+    }
+    """
+    input_stream = InputStream(cpp_code)
+    lexer = CPPLexer(input_stream)
+    stream = CommonTokenStream(lexer)
+    parser = CPPParser(stream)
+    
+    # 获取语法树
+    tree = parser.program()
+
+    # 创建并应用监听器
+    listener = CPPParserListener()
+    walker = ParseTreeWalker()
+    walker.walk(listener, tree)
+    print(listener.python_code)
     root = tk.Tk()
     app = CPPParserGUI(root)
     root.mainloop()
-
+   
 if __name__ == '__main__':
     main()
