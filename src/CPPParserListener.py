@@ -17,7 +17,7 @@ class CPPParserListener(ParseTreeListener):
 
     output = ""
     indent = 0
-    tab = "\t"
+    tab = "    "
 
     def getIndent(self):
         return self.indent * self.tab
@@ -137,6 +137,7 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#typeSpecifier.
     def enterTypeSpecifier(self, ctx:CPPParser.TypeSpecifierContext):
+        
         pass
 
     # Exit a parse tree produced by CPPParser#typeSpecifier.
@@ -201,9 +202,9 @@ class CPPParserListener(ParseTreeListener):
     # Enter a parse tree produced by CPPParser#arrayIdentifier.
     def enterArrayIdentifier(self, ctx:CPPParser.ArrayIdentifierContext):
         pass
-
     # Exit a parse tree produced by CPPParser#arrayIdentifier.
     def exitArrayIdentifier(self, ctx:CPPParser.ArrayIdentifierContext):
+        
         pass
 
 
@@ -239,9 +240,9 @@ class CPPParserListener(ParseTreeListener):
     
         # 获取变量名
         declarators = ctx.declarator()  # 获取所有声明的变量
-        parent_rule = ctx.parentCtx.parentCtx.getRuleIndex() if ctx.parentCtx else ""
+        parent_rule = ctx.parentCtx.parentCtx.parentCtx.parentCtx.getRuleIndex() if ctx.parentCtx else ""
         print(parent_rule)
-        if "for" in parent_rule and "initialStatement" in parent_rule:
+        if parent_rule == 49:
             return
         # 对每个变量进行处理
         for declarator in declarators:
@@ -442,6 +443,9 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#assignStatement.
     def enterAssignStatement(self, ctx:CPPParser.AssignStatementContext):
+        statement = ctx.getText().rstrip(";")
+        self.output += f"{self.getIndent()}{statement}\n"  # 使用零初始化数组
+ 
         pass
 
     # Exit a parse tree produced by CPPParser#assignStatement.
@@ -453,12 +457,23 @@ class CPPParserListener(ParseTreeListener):
     def enterIoStatement(self, ctx:CPPParser.IoStatementContext):
     
         if ctx.getChild(0).getText().startswith("cout"):
-            self.output+=(f"{self.getIndent()}print(")
+            self.output += f"{self.getIndent()}print("
             # 将 cout 语句转换为 print 语句
+            first = True  # 用于判断是否是第一个子元素
+
             for child in ctx.getChild(0).children:
                 if child.getText() != "<<" and child.getText() != "cout":
-                    self.output+=(f"{child.getText()}")
-            self.output+=(f")\n")
+                    # 如果不是第一个子元素，加上加号
+                    if not first:
+                        self.output += " + "
+                    first = False  # 之后的元素需要加上"+"
+                    if child.getText() == "endl":
+                        self.output += '"\\n"'
+                        continue
+                    # 将子元素的文本添加到输出
+                    self.output += f"{child.getText()}"
+            
+            self.output += ")\n"  # 结束print语句
 
          
         # 判断是否是 cin 语句
