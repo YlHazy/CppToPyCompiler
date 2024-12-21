@@ -15,7 +15,19 @@ class CPPParserListener(ParseTreeListener):
 
         self.out_path = out_path
 
-    output = ""
+    output = """
+def convert_input(user_input):
+    try:
+        # 尝试将输入转化为整数
+        return int(user_input)
+    except ValueError:
+        try:
+            # 如果是整数转化失败，尝试将输入转化为浮点数
+            return float(user_input)
+        except ValueError:
+            # 如果既不是整数也不是浮点数，返回原始字符串
+            return user_input
+"""
     indent = 0
     tab = "    "
 
@@ -237,7 +249,7 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#declaratorList.
     def enterDeclaratorList(self, ctx:CPPParser.DeclaratorListContext):
-    
+
         # 获取变量名
         declarators = ctx.declarator()  # 获取所有声明的变量
         parent_rule = ctx.parentCtx.parentCtx.parentCtx.parentCtx.getRuleIndex() if ctx.parentCtx else ""
@@ -257,7 +269,24 @@ class CPPParserListener(ParseTreeListener):
                 self.output += f"{self.getIndent()}{var_name} = [0] * {size}\n"  # 使用零初始化数组
             elif declarator.initializer():
                 init_value = declarator.initializer().getText()  # 获取初始化值
-                self.output+=(f"{self.getIndent()}{var_name} = {init_value}\n")
+                var_name = declarator.Identifier().getText()  # 获取变量名
+                init_value = declarator.initializer().getText()  # 获取初始化值
+                if (declarator.initializer().getChild(1).getChild(0).getChild(0)):
+                    if (declarator.initializer().getChild(1).getChild(0).getRuleIndex() == 16):
+                        function_src = declarator.initializer().getChild(1).getChild(0).getChild(0)
+                        print(f"function_src: {function_src.getText()}")
+                        if len(function_src.children) == 3:  # 必须是对象.方法的形式
+                            object_name = function_src.children[0].getText()  # 对象名称
+                            method_name = function_src.children[2].getText()  # 方法名
+                            print(f"object_name: {object_name}, method_name: {method_name}")
+                            # 如果方法是 "length"，将其转换为 Python 的 len()
+                            if method_name == "length":
+                                self.output += f"{self.getIndent()}{var_name} = len({object_name})\n"
+                                return
+
+                init_value = init_value.replace("false", "False").replace("true", "True")
+                self.output += (f"{self.getIndent()}{var_name}{init_value}\n")
+
             else:
                 # 如果没有初始化值，直接声明变量
                 self.output+=(f"{self.getIndent()}{var_name} = None\n")  # 默认用 None 来表示未初始化
@@ -442,11 +471,28 @@ class CPPParserListener(ParseTreeListener):
 
 
     # Enter a parse tree produced by CPPParser#assignStatement.
-    def enterAssignStatement(self, ctx:CPPParser.AssignStatementContext):
+    def enterAssignStatement(self, ctx: CPPParser.AssignStatementContext):
         statement = ctx.getText().rstrip(";")
+        statement = statement.replace("false", "False").replace("true", "True")
+        declarator = ctx.getChild(0)  # 获取第一个声明的变量
+        if (declarator.initializer().getChild(1).getChild(0).getChild(0)):
+            if (declarator.initializer().getChild(1).getChild(0).getRuleIndex() == 16):
+                var_name = declarator.Identifier().getText()  # 获取变量名
+                init_value = declarator.initializer().getText()  # 获取初始化值
+                var_name = var_name.replace("false", "False").replace("true", "True")
+                print(declarator.initializer().getChild(1).getChild(0).getRuleIndex())
+                function_src = declarator.initializer().getChild(1).getChild(0).getChild(0)
+                print(f"function_src: {function_src.getText()}")
+                if len(function_src.children) == 3:  # 必须是对象.方法的形式
+                    object_name = function_src.children[0].getText()  # 对象名称
+                    method_name = function_src.children[2].getText()  # 方法名
+                    print(f"object_name: {object_name}, method_name: {method_name}")
+                    # 如果方法是 "length"，将其转换为 Python 的 len()
+                    if method_name == "length":
+                        self.output += f"{self.getIndent()}{var_name} = len({object_name})\n"
+                        return
+
         self.output += f"{self.getIndent()}{statement}\n"  # 使用零初始化数组
- 
-        pass
 
     # Exit a parse tree produced by CPPParser#assignStatement.
     def exitAssignStatement(self, ctx:CPPParser.AssignStatementContext):
@@ -478,13 +524,14 @@ class CPPParserListener(ParseTreeListener):
          
         # 判断是否是 cin 语句
         elif ctx.getChild(0).getText().startswith("cin"):
-            self.output+=(f"{self.getIndent()}")
-            # 将 cout 语句转换为 print 语句
+            self.output += (f"{self.getIndent()}")
+            identifier = None
             for child in ctx.getChild(0).children:
                 if child.getText() != ">>" and child.getText() != "cin":
-                    self.output+=(f"{child.getText()}")
-            self.output+=(f"= input()\n")
-        pass
+                    self.output += (f"{child.getText()}")
+                    identifier = child.getText()
+            self.output += (f"= input()\n")
+            self.output += (f"{self.getIndent()}{identifier} = convert_input({identifier})\n")
 
     # Exit a parse tree produced by CPPParser#ioStatement.
     def exitIoStatement(self, ctx:CPPParser.IoStatementContext):
@@ -493,7 +540,21 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#functionCallStatement.
     def enterFunctionCallStatement(self, ctx:CPPParser.FunctionCallStatementContext):
-        pass
+        # 获取函数调用的标识符部分
+        function_src = ctx.getChild(0).getChild(0)
+
+        # 检查是否为对象的属性访问
+        if len(function_src.children) == 3:  # 必须是对象.方法的形式
+            object_name = function_src.children[0].getText()  # 对象名称
+            method_name = function_src.children[2].getText()  # 方法名
+            print(f"object_name: {object_name}, method_name: {method_name}")
+            # 如果方法是 "length"，将其转换为 Python 的 len()
+            if method_name == "length":
+                self.output += f"{self.getIndent()}len({object_name})\n"
+                return
+
+        # 默认情况下按原样输出
+        self.output += f"{self.getIndent()}{ctx.getText()}\n"
 
     # Exit a parse tree produced by CPPParser#functionCallStatement.
     def exitFunctionCallStatement(self, ctx:CPPParser.FunctionCallStatementContext):
@@ -501,12 +562,19 @@ class CPPParserListener(ParseTreeListener):
 
 
     # Enter a parse tree produced by CPPParser#ifStatement.
-    def enterIfStatement(self, ctx:CPPParser.IfStatementContext):
-        pass
+    def enterIfStatement(self, ctx: CPPParser.IfStatementContext):
+        self.output += self.getIndent()
+        self.output += "if "
+        condition = ctx.ifWhileConditionStatement()
+        if condition:
+            for child in condition.children:
+                self.output += child.getText()
+            self.output += ":\n"
+        self.indent += 1
 
-    # Exit a parse tree produced by CPPParser#ifStatement.
-    def exitIfStatement(self, ctx:CPPParser.IfStatementContext):
-        pass
+        # Exit a parse tree produced by CPPParser#ifStatement.
+    def exitIfStatement(self, ctx: CPPParser.IfStatementContext):
+        self.indent -= 1
 
 
     # Enter a parse tree produced by CPPParser#elseIfStatement.
@@ -520,11 +588,15 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#elseStatement.
     def enterElseStatement(self, ctx:CPPParser.ElseStatementContext):
-        pass
+        self.indent -= 1
+        self.output += self.getIndent()
+        self.output += "else:"
+        self.output += "\n"
+        self.indent += 1
 
     # Exit a parse tree produced by CPPParser#elseStatement.
     def exitElseStatement(self, ctx:CPPParser.ElseStatementContext):
-        pass
+        self.indent -= 1
 
 
     # Enter a parse tree produced by CPPParser#forStatement.
@@ -545,12 +617,11 @@ class CPPParserListener(ParseTreeListener):
             condition_left = condition_stmt.getChild(0).getText()  # 左边的变量名
             condition_operator = condition_stmt.getChild(1).getText()  # 运算符（<）
             condition_right = condition_stmt.getChild(2).getText()  # 右边的条件值
-            self.output += f"{self.getIndent()}for {condition_left} in range({condition_left}, {condition_right}):\n"
+            self.output += f"{self.getIndent()}for {condition_left} in range(int({condition_left}), int({condition_right})):\n"
 
         # 检查是否有迭代部分
         if iterator_stmt:
             iterator_var_name = iterator_stmt.getChild(1).getText()  # 获取变量名
-            self.output += f"{self.getIndent()}    {iterator_var_name} += 1\n"
         self.indent +=1
         pass
 

@@ -246,40 +246,26 @@ class CPPParserGUI:
 def main():
     cpp_code = """
     #include <iostream>
-    using namespace std;
-
-    int main() {
-        int n;
-
-        cout << "请输入数组的长度：";
-        cin >> n;
-
-        int arr[100];
-
-        cout << "请输入 " << n << " 个整数：";
-        for (int i = 0; i < n; ++i) {
-            cin >> arr[i];
-        }
-
-        for (int i = 0; i < n - 1; ++i) {
-            for (int j = 0; j < n - i - 1; ++j) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
-
-        cout << "排序后的数组是：";
-        for (int i = 0; i < n; ++i) {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-
-        return 0;
-    }
-
+#include <string>
+using namespace std;
+int main()
+{
+  string s;
+  cin >> s;
+  bool ans = true;
+  int len = s.length();
+  for (int i = 0; i < len / 2; ++i)
+  {
+    if (s[i] != s[len - 1 - i]) ans = false;
+  }
+  if (ans)
+  {
+    cout << "True" << endl;
+  } else {
+    cout << "False" << endl;
+  }
+  return 0;
+}
     """
     input_stream = InputStream(cpp_code)
     lexer = CPPLexer(input_stream)
@@ -293,7 +279,7 @@ def main():
     listener = CPPParserListener()
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
-    print(listener.python_code)
+    print(listener.output)
     root = tk.Tk()
     app = CPPParserGUI(root)
     root.mainloop()
