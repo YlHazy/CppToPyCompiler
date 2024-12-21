@@ -1,5 +1,6 @@
 # Generated from CPPParser.g4 by ANTLR 4.13.2
 from antlr4 import *
+import autopep8
 from CPPLexer import CPPLexer
 if "." in __name__:
     from .CPPParser import CPPParser
@@ -8,16 +9,31 @@ else:
 
 # This class defines a complete listener for a parse tree produced by CPPParser.
 class CPPParserListener(ParseTreeListener):
-    def __init__(self):
-        self.python_code = []
+    out_path = "out.py"
+
+    def __init__(self, out_path="out.py"):
+
+        self.out_path = out_path
+
+    output = ""
+    indent = 0
+    tab = "\t"
+
+    def getIndent(self):
+        return self.indent * self.tab
+
+    def addNewLine(self):
+        self.output += '\n'
     # Enter a parse tree produced by CPPParser#program.
     def enterProgram(self, ctx:CPPParser.ProgramContext):
         pass
 
     # Exit a parse tree produced by CPPParser#program.
     def exitProgram(self, ctx:CPPParser.ProgramContext):
+        # compilation_theory.antlr_approach.main.CppToPython.output_string = self.output
+        with open(f'{self.out_path}', 'w') as file:
+            file.write(self.output)
         pass
-
 
     # Enter a parse tree produced by CPPParser#preprocessorDirective.
     def enterPreprocessorDirective(self, ctx:CPPParser.PreprocessorDirectiveContext):
@@ -57,8 +73,7 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#includeDirective.
     def enterIncludeDirective(self, ctx:CPPParser.IncludeDirectiveContext):
-        if ctx.Include():
-                self.python_code.append(f"import")
+        pass
     # Exit a parse tree produced by CPPParser#includeDirective.
     def exitIncludeDirective(self, ctx:CPPParser.IncludeDirectiveContext):
         pass
@@ -84,12 +99,14 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#mainFunctionDeclaration.
     def enterMainFunctionDeclaration(self, ctx:CPPParser.MainFunctionDeclarationContext):
+        self.output += ("if __name__ == '__main__':\n")
+        self.indent += 1
         pass
 
     # Exit a parse tree produced by CPPParser#mainFunctionDeclaration.
     def exitMainFunctionDeclaration(self, ctx:CPPParser.MainFunctionDeclarationContext):
+        self.indent -= 1
         pass
-
 
     # Enter a parse tree produced by CPPParser#functionDeclaration.
     def enterFunctionDeclaration(self, ctx:CPPParser.FunctionDeclarationContext):
@@ -219,7 +236,30 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#declaratorList.
     def enterDeclaratorList(self, ctx:CPPParser.DeclaratorListContext):
-        pass
+    
+        # 获取变量名
+        declarators = ctx.declarator()  # 获取所有声明的变量
+        parent_rule = ctx.parentCtx.parentCtx.getRuleIndex() if ctx.parentCtx else ""
+        print(parent_rule)
+        if "for" in parent_rule and "initialStatement" in parent_rule:
+            return
+        # 对每个变量进行处理
+        for declarator in declarators:
+            var_name = declarator.getText()  # 获取变量名
+            # 如果存在初始化值
+            if declarator.arrayIdentifier():
+            # 处理数组声明
+                var_name = declarator.getChild(0).getChild(0).getText()  # 获取变量名
+
+                array_identifier = declarator.arrayIdentifier()
+                size = array_identifier.expression().getText()  # 获取数组大小
+                self.output += f"{self.getIndent()}{var_name} = [0] * {size}\n"  # 使用零初始化数组
+            elif declarator.initializer():
+                init_value = declarator.initializer().getText()  # 获取初始化值
+                self.output+=(f"{self.getIndent()}{var_name} = {init_value}\n")
+            else:
+                # 如果没有初始化值，直接声明变量
+                self.output+=(f"{self.getIndent()}{var_name} = None\n")  # 默认用 None 来表示未初始化
 
     # Exit a parse tree produced by CPPParser#declaratorList.
     def exitDeclaratorList(self, ctx:CPPParser.DeclaratorListContext):
@@ -300,6 +340,7 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#literal.
     def enterLiteral(self, ctx:CPPParser.LiteralContext):
+        return ctx.getText()
         pass
 
     # Exit a parse tree produced by CPPParser#literal.
@@ -327,6 +368,8 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#forConditionStatement.
     def enterForConditionStatement(self, ctx:CPPParser.ForConditionStatementContext):
+    
+
         pass
 
     # Exit a parse tree produced by CPPParser#forConditionStatement.
@@ -408,6 +451,24 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#ioStatement.
     def enterIoStatement(self, ctx:CPPParser.IoStatementContext):
+    
+        if ctx.getChild(0).getText().startswith("cout"):
+            self.output+=(f"{self.getIndent()}print(")
+            # 将 cout 语句转换为 print 语句
+            for child in ctx.getChild(0).children:
+                if child.getText() != "<<" and child.getText() != "cout":
+                    self.output+=(f"{child.getText()}")
+            self.output+=(f")\n")
+
+         
+        # 判断是否是 cin 语句
+        elif ctx.getChild(0).getText().startswith("cin"):
+            self.output+=(f"{self.getIndent()}")
+            # 将 cout 语句转换为 print 语句
+            for child in ctx.getChild(0).children:
+                if child.getText() != ">>" and child.getText() != "cin":
+                    self.output+=(f"{child.getText()}")
+            self.output+=(f"= input()\n")
         pass
 
     # Exit a parse tree produced by CPPParser#ioStatement.
@@ -453,10 +514,35 @@ class CPPParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by CPPParser#forStatement.
     def enterForStatement(self, ctx:CPPParser.ForStatementContext):
+        for_condition_stmt = ctx.forConditionStatement()  # 获取 for 条件部分
+        init_stmt = for_condition_stmt.forConditionForCommon().initialStatement() if for_condition_stmt else None
+        condition_stmt = for_condition_stmt.forConditionForCommon().conditionStatement() if for_condition_stmt else None
+        iterator_stmt = for_condition_stmt.forConditionForCommon().iterator() if for_condition_stmt else None
+
+        # 检查是否有初始化部分
+        if init_stmt:
+            init_var_name = init_stmt.declaratorList().declarator()[0].getChild(0).getText()  # 获取变量名
+            init_value = init_stmt.declaratorList().declarator()[0].initializer().getChild(1).getText()  # 获取初始化值
+            self.output += f"{self.getIndent()}{init_var_name} = {init_value}\n"
+
+        # 检查是否有条件部分
+        if condition_stmt:
+            condition_left = condition_stmt.getChild(0).getText()  # 左边的变量名
+            condition_operator = condition_stmt.getChild(1).getText()  # 运算符（<）
+            condition_right = condition_stmt.getChild(2).getText()  # 右边的条件值
+            self.output += f"{self.getIndent()}for {condition_left} in range({condition_left}, {condition_right}):\n"
+
+        # 检查是否有迭代部分
+        if iterator_stmt:
+            iterator_var_name = iterator_stmt.getChild(1).getText()  # 获取变量名
+            self.output += f"{self.getIndent()}    {iterator_var_name} += 1\n"
+        self.indent +=1
         pass
 
     # Exit a parse tree produced by CPPParser#forStatement.
     def exitForStatement(self, ctx:CPPParser.ForStatementContext):
+        self.indent -=1
+
         pass
 
 

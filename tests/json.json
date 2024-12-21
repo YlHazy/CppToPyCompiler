@@ -188,13 +188,13 @@
                             {
                               "type": "Cout",
                               "text": "cout",
-                              "line": 8,
+                              "line": 7,
                               "column": 4
                             },
                             {
                               "type": "Stdout",
                               "text": "<<",
-                              "line": 8,
+                              "line": 7,
                               "column": 9
                             },
                             {
@@ -203,7 +203,7 @@
                                 {
                                   "type": "StringLiteral",
                                   "text": "\"请输入数组的长度：\"",
-                                  "line": 8,
+                                  "line": 7,
                                   "column": 12
                                 }
                               ]
@@ -213,7 +213,7 @@
                         {
                           "type": "Semi",
                           "text": ";",
-                          "line": 8,
+                          "line": 7,
                           "column": 23
                         }
                       ]
@@ -232,19 +232,19 @@
                             {
                               "type": "Cin",
                               "text": "cin",
-                              "line": 9,
+                              "line": 8,
                               "column": 4
                             },
                             {
                               "type": "Stdin",
                               "text": ">>",
-                              "line": 9,
+                              "line": 8,
                               "column": 8
                             },
                             {
                               "type": "Identifier",
                               "text": "n",
-                              "line": 9,
+                              "line": 8,
                               "column": 11
                             }
                           ]
@@ -252,7 +252,7 @@
                         {
                           "type": "Semi",
                           "text": ";",
-                          "line": 9,
+                          "line": 8,
                           "column": 12
                         }
                       ]
@@ -274,7 +274,7 @@
                                 {
                                   "type": "Int",
                                   "text": "int",
-                                  "line": 12,
+                                  "line": 10,
                                   "column": 4
                                 }
                               ]
@@ -293,13 +293,13 @@
                                     {
                                       "type": "Identifier",
                                       "text": "arr",
-                                      "line": 12,
+                                      "line": 10,
                                       "column": 8
                                     },
                                     {
                                       "type": "LeftBrackets",
                                       "text": "[",
-                                      "line": 12,
+                                      "line": 10,
                                       "column": 11
                                     },
                                     {
@@ -314,7 +314,7 @@
                                                 {
                                                   "type": "IntegerLiteral",
                                                   "text": "100",
-                                                  "line": 12,
+                                                  "line": 10,
                                                   "column": 12
                                                 }
                                               ]
@@ -326,7 +326,7 @@
                                     {
                                       "type": "RightBrackets",
                                       "text": "]",
-                                      "line": 12,
+                                      "line": 10,
                                       "column": 15
                                     }
                                   ]
@@ -338,7 +338,7 @@
                         {
                           "type": "Semi",
                           "text": ";",
-                          "line": 12,
+                          "line": 10,
                           "column": 16
                         }
                       ]
@@ -357,13 +357,13 @@
                             {
                               "type": "Cout",
                               "text": "cout",
-                              "line": 15,
+                              "line": 12,
                               "column": 4
                             },
                             {
                               "type": "Stdout",
                               "text": "<<",
-                              "line": 15,
+                              "line": 12,
                               "column": 9
                             },
                             {
@@ -372,7 +372,7 @@
                                 {
                                   "type": "StringLiteral",
                                   "text": "\"请输入 \" << n << \" 个整数：\"",
-                                  "line": 15,
+                                  "line": 12,
                                   "column": 12
                                 }
                               ]
@@ -382,7 +382,7 @@
                         {
                           "type": "Semi",
                           "text": ";",
-                          "line": 15,
+                          "line": 12,
                           "column": 34
                         }
                       ]
@@ -398,13 +398,13 @@
                         {
                           "type": "For",
                           "text": "for",
-                          "line": 16,
+                          "line": 13,
                           "column": 4
                         },
                         {
                           "type": "LeftParen",
                           "text": "(",
-                          "line": 16,
+                          "line": 13,
                           "column": 8
                         },
                         {
@@ -425,7 +425,7 @@
                                             {
                                               "type": "Int",
                                               "text": "int",
-                                              "line": 16,
+                                              "line": 13,
                                               "column": 9
                                             }
                                           ]
@@ -441,7 +441,7 @@
                                             {
                                               "type": "Identifier",
                                               "text": "i",
-                                              "line": 16,
+                                              "line": 13,
                                               "column": 13
                                             },
                                             {
@@ -450,7 +450,7 @@
                                                 {
                                                   "type": "Assign",
                                                   "text": "=",
-                                                  "line": 16,
+                                                  "line": 13,
                                                   "column": 15
                                                 },
                                                 {
@@ -459,7 +459,7 @@
                                                     {
                                                       "type": "IntegerLiteral",
                                                       "text": "0",
-                                                      "line": 16,
+                                                      "line": 13,
                                                       "column": 17
                                                     }
                                                   ]
@@ -475,7 +475,7 @@
                                 {
                                   "type": "Semi",
                                   "text": ";",
-                                  "line": 16,
+                                  "line": 13,
                                   "column": 18
                                 },
                                 {
@@ -484,7 +484,7 @@
                                     {
                                       "type": "Identifier",
                                       "text": "i",
-                                      "line": 16,
+                                      "line": 13,
                                       "column": 20
                                     },
                                     {
@@ -493,7 +493,7 @@
                                         {
                                           "type": "Less",
                                           "text": "<",
-                                          "line": 16,
+                                          "line": 13,
                                           "column": 22
                                         }
                                       ]
@@ -501,7 +501,7 @@
                                     {
                                       "type": "Identifier",
                                       "text": "n",
-                                      "line": 16,
+                                      "line": 13,
                                       "column": 24
                                     }
                                   ]
@@ -509,7 +509,7 @@
                                 {
                                   "type": "Semi",
                                   "text": ";",
-                                  "line": 16,
+                                  "line": 13,
                                   "column": 25
                                 },
                                 {
@@ -518,13 +518,13 @@
                                     {
                                       "type": "PlusPlus",
                                       "text": "++",
-                                      "line": 16,
+                                      "line": 13,
                                       "column": 27
                                     },
                                     {
                                       "type": "Identifier",
                                       "text": "i",
-                                      "line": 16,
+                                      "line": 13,
                                       "column": 29
                                     }
                                   ]
@@ -536,7 +536,7 @@
                         {
                           "type": "RightParen",
                           "text": ")",
-                          "line": 16,
+                          "line": 13,
                           "column": 30
                         },
                         {
@@ -545,7 +545,7 @@
                             {
                               "type": "LeftBrace",
                               "text": "{",
-                              "line": 16,
+                              "line": 13,
                               "column": 32
                             },
                             {
@@ -560,13 +560,13 @@
                                         {
                                           "type": "Cin",
                                           "text": "cin",
-                                          "line": 17,
+                                          "line": 14,
                                           "column": 8
                                         },
                                         {
                                           "type": "Stdin",
                                           "text": ">>",
-                                          "line": 17,
+                                          "line": 14,
                                           "column": 12
                                         },
                                         {
@@ -575,25 +575,25 @@
                                             {
                                               "type": "Identifier",
                                               "text": "arr",
-                                              "line": 17,
+                                              "line": 14,
                                               "column": 15
                                             },
                                             {
                                               "type": "LeftBrackets",
                                               "text": "[",
-                                              "line": 17,
+                                              "line": 14,
                                               "column": 18
                                             },
                                             {
                                               "type": "Identifier",
                                               "text": "i",
-                                              "line": 17,
+                                              "line": 14,
                                               "column": 19
                                             },
                                             {
                                               "type": "RightBrackets",
                                               "text": "]",
-                                              "line": 17,
+                                              "line": 14,
                                               "column": 20
                                             }
                                           ]
@@ -603,7 +603,7 @@
                                     {
                                       "type": "Semi",
                                       "text": ";",
-                                      "line": 17,
+                                      "line": 14,
                                       "column": 21
                                     }
                                   ]
@@ -613,7 +613,7 @@
                             {
                               "type": "RightBrace",
                               "text": "}",
-                              "line": 18,
+                              "line": 15,
                               "column": 4
                             }
                           ]
@@ -631,13 +631,13 @@
                         {
                           "type": "For",
                           "text": "for",
-                          "line": 21,
+                          "line": 17,
                           "column": 4
                         },
                         {
                           "type": "LeftParen",
                           "text": "(",
-                          "line": 21,
+                          "line": 17,
                           "column": 8
                         },
                         {
@@ -658,7 +658,7 @@
                                             {
                                               "type": "Int",
                                               "text": "int",
-                                              "line": 21,
+                                              "line": 17,
                                               "column": 9
                                             }
                                           ]
@@ -674,7 +674,7 @@
                                             {
                                               "type": "Identifier",
                                               "text": "i",
-                                              "line": 21,
+                                              "line": 17,
                                               "column": 13
                                             },
                                             {
@@ -683,7 +683,7 @@
                                                 {
                                                   "type": "Assign",
                                                   "text": "=",
-                                                  "line": 21,
+                                                  "line": 17,
                                                   "column": 15
                                                 },
                                                 {
@@ -692,7 +692,7 @@
                                                     {
                                                       "type": "IntegerLiteral",
                                                       "text": "0",
-                                                      "line": 21,
+                                                      "line": 17,
                                                       "column": 17
                                                     }
                                                   ]
@@ -708,7 +708,7 @@
                                 {
                                   "type": "Semi",
                                   "text": ";",
-                                  "line": 21,
+                                  "line": 17,
                                   "column": 18
                                 },
                                 {
@@ -717,7 +717,7 @@
                                     {
                                       "type": "Identifier",
                                       "text": "i",
-                                      "line": 21,
+                                      "line": 17,
                                       "column": 20
                                     },
                                     {
@@ -726,7 +726,7 @@
                                         {
                                           "type": "Less",
                                           "text": "<",
-                                          "line": 21,
+                                          "line": 17,
                                           "column": 22
                                         }
                                       ]
@@ -743,7 +743,7 @@
                                                 {
                                                   "type": "Identifier",
                                                   "text": "n",
-                                                  "line": 21,
+                                                  "line": 17,
                                                   "column": 24
                                                 }
                                               ]
@@ -753,7 +753,7 @@
                                         {
                                           "type": "Minus",
                                           "text": "-",
-                                          "line": 21,
+                                          "line": 17,
                                           "column": 26
                                         },
                                         {
@@ -765,7 +765,7 @@
                                                 {
                                                   "type": "IntegerLiteral",
                                                   "text": "1",
-                                                  "line": 21,
+                                                  "line": 17,
                                                   "column": 28
                                                 }
                                               ]
@@ -779,7 +779,7 @@
                                 {
                                   "type": "Semi",
                                   "text": ";",
-                                  "line": 21,
+                                  "line": 17,
                                   "column": 29
                                 },
                                 {
@@ -788,13 +788,13 @@
                                     {
                                       "type": "PlusPlus",
                                       "text": "++",
-                                      "line": 21,
+                                      "line": 17,
                                       "column": 31
                                     },
                                     {
                                       "type": "Identifier",
                                       "text": "i",
-                                      "line": 21,
+                                      "line": 17,
                                       "column": 33
                                     }
                                   ]
@@ -806,7 +806,7 @@
                         {
                           "type": "RightParen",
                           "text": ")",
-                          "line": 21,
+                          "line": 17,
                           "column": 34
                         },
                         {
@@ -815,7 +815,7 @@
                             {
                               "type": "LeftBrace",
                               "text": "{",
-                              "line": 21,
+                              "line": 17,
                               "column": 36
                             },
                             {
@@ -827,13 +827,13 @@
                                     {
                                       "type": "For",
                                       "text": "for",
-                                      "line": 22,
+                                      "line": 18,
                                       "column": 8
                                     },
                                     {
                                       "type": "LeftParen",
                                       "text": "(",
-                                      "line": 22,
+                                      "line": 18,
                                       "column": 12
                                     },
                                     {
@@ -854,7 +854,7 @@
                                                         {
                                                           "type": "Int",
                                                           "text": "int",
-                                                          "line": 22,
+                                                          "line": 18,
                                                           "column": 13
                                                         }
                                                       ]
@@ -870,7 +870,7 @@
                                                         {
                                                           "type": "Identifier",
                                                           "text": "j",
-                                                          "line": 22,
+                                                          "line": 18,
                                                           "column": 17
                                                         },
                                                         {
@@ -879,7 +879,7 @@
                                                             {
                                                               "type": "Assign",
                                                               "text": "=",
-                                                              "line": 22,
+                                                              "line": 18,
                                                               "column": 19
                                                             },
                                                             {
@@ -888,7 +888,7 @@
                                                                 {
                                                                   "type": "IntegerLiteral",
                                                                   "text": "0",
-                                                                  "line": 22,
+                                                                  "line": 18,
                                                                   "column": 21
                                                                 }
                                                               ]
@@ -904,7 +904,7 @@
                                             {
                                               "type": "Semi",
                                               "text": ";",
-                                              "line": 22,
+                                              "line": 18,
                                               "column": 22
                                             },
                                             {
@@ -913,7 +913,7 @@
                                                 {
                                                   "type": "Identifier",
                                                   "text": "j",
-                                                  "line": 22,
+                                                  "line": 18,
                                                   "column": 24
                                                 },
                                                 {
@@ -922,7 +922,7 @@
                                                     {
                                                       "type": "Less",
                                                       "text": "<",
-                                                      "line": 22,
+                                                      "line": 18,
                                                       "column": 26
                                                     }
                                                   ]
@@ -939,7 +939,7 @@
                                                             {
                                                               "type": "Identifier",
                                                               "text": "n",
-                                                              "line": 22,
+                                                              "line": 18,
                                                               "column": 28
                                                             }
                                                           ]
@@ -949,7 +949,7 @@
                                                     {
                                                       "type": "Minus",
                                                       "text": "-",
-                                                      "line": 22,
+                                                      "line": 18,
                                                       "column": 30
                                                     },
                                                     {
@@ -961,7 +961,7 @@
                                                             {
                                                               "type": "Identifier",
                                                               "text": "i",
-                                                              "line": 22,
+                                                              "line": 18,
                                                               "column": 32
                                                             }
                                                           ]
@@ -971,7 +971,7 @@
                                                     {
                                                       "type": "Minus",
                                                       "text": "-",
-                                                      "line": 22,
+                                                      "line": 18,
                                                       "column": 34
                                                     },
                                                     {
@@ -983,7 +983,7 @@
                                                             {
                                                               "type": "IntegerLiteral",
                                                               "text": "1",
-                                                              "line": 22,
+                                                              "line": 18,
                                                               "column": 36
                                                             }
                                                           ]
@@ -997,7 +997,7 @@
                                             {
                                               "type": "Semi",
                                               "text": ";",
-                                              "line": 22,
+                                              "line": 18,
                                               "column": 37
                                             },
                                             {
@@ -1006,13 +1006,13 @@
                                                 {
                                                   "type": "PlusPlus",
                                                   "text": "++",
-                                                  "line": 22,
+                                                  "line": 18,
                                                   "column": 39
                                                 },
                                                 {
                                                   "type": "Identifier",
                                                   "text": "j",
-                                                  "line": 22,
+                                                  "line": 18,
                                                   "column": 41
                                                 }
                                               ]
@@ -1024,7 +1024,7 @@
                                     {
                                       "type": "RightParen",
                                       "text": ")",
-                                      "line": 22,
+                                      "line": 18,
                                       "column": 42
                                     },
                                     {
@@ -1033,7 +1033,7 @@
                                         {
                                           "type": "LeftBrace",
                                           "text": "{",
-                                          "line": 22,
+                                          "line": 18,
                                           "column": 44
                                         },
                                         {
@@ -1045,13 +1045,13 @@
                                                 {
                                                   "type": "If",
                                                   "text": "if",
-                                                  "line": 23,
+                                                  "line": 19,
                                                   "column": 12
                                                 },
                                                 {
                                                   "type": "LeftParen",
                                                   "text": "(",
-                                                  "line": 23,
+                                                  "line": 19,
                                                   "column": 15
                                                 },
                                                 {
@@ -1069,25 +1069,25 @@
                                                                 {
                                                                   "type": "Identifier",
                                                                   "text": "arr",
-                                                                  "line": 23,
+                                                                  "line": 19,
                                                                   "column": 16
                                                                 },
                                                                 {
                                                                   "type": "LeftBrackets",
                                                                   "text": "[",
-                                                                  "line": 23,
+                                                                  "line": 19,
                                                                   "column": 19
                                                                 },
                                                                 {
                                                                   "type": "Identifier",
                                                                   "text": "j",
-                                                                  "line": 23,
+                                                                  "line": 19,
                                                                   "column": 20
                                                                 },
                                                                 {
                                                                   "type": "RightBrackets",
                                                                   "text": "]",
-                                                                  "line": 23,
+                                                                  "line": 19,
                                                                   "column": 21
                                                                 }
                                                               ]
@@ -1098,7 +1098,7 @@
                                                                 {
                                                                   "type": "Greater",
                                                                   "text": ">",
-                                                                  "line": 23,
+                                                                  "line": 19,
                                                                   "column": 23
                                                                 }
                                                               ]
@@ -1109,13 +1109,13 @@
                                                                 {
                                                                   "type": "Identifier",
                                                                   "text": "arr",
-                                                                  "line": 23,
+                                                                  "line": 19,
                                                                   "column": 25
                                                                 },
                                                                 {
                                                                   "type": "LeftBrackets",
                                                                   "text": "[",
-                                                                  "line": 23,
+                                                                  "line": 19,
                                                                   "column": 28
                                                                 },
                                                                 {
@@ -1130,7 +1130,7 @@
                                                                             {
                                                                               "type": "Identifier",
                                                                               "text": "j",
-                                                                              "line": 23,
+                                                                              "line": 19,
                                                                               "column": 29
                                                                             }
                                                                           ]
@@ -1140,7 +1140,7 @@
                                                                     {
                                                                       "type": "Plus",
                                                                       "text": "+",
-                                                                      "line": 23,
+                                                                      "line": 19,
                                                                       "column": 31
                                                                     },
                                                                     {
@@ -1152,7 +1152,7 @@
                                                                             {
                                                                               "type": "IntegerLiteral",
                                                                               "text": "1",
-                                                                              "line": 23,
+                                                                              "line": 19,
                                                                               "column": 33
                                                                             }
                                                                           ]
@@ -1164,7 +1164,7 @@
                                                                 {
                                                                   "type": "RightBrackets",
                                                                   "text": "]",
-                                                                  "line": 23,
+                                                                  "line": 19,
                                                                   "column": 34
                                                                 }
                                                               ]
@@ -1178,7 +1178,7 @@
                                                 {
                                                   "type": "RightParen",
                                                   "text": ")",
-                                                  "line": 23,
+                                                  "line": 19,
                                                   "column": 35
                                                 },
                                                 {
@@ -1187,7 +1187,7 @@
                                                     {
                                                       "type": "LeftBrace",
                                                       "text": "{",
-                                                      "line": 23,
+                                                      "line": 19,
                                                       "column": 37
                                                     },
                                                     {
@@ -1205,7 +1205,7 @@
                                                                     {
                                                                       "type": "Int",
                                                                       "text": "int",
-                                                                      "line": 25,
+                                                                      "line": 21,
                                                                       "column": 16
                                                                     }
                                                                   ]
@@ -1221,7 +1221,7 @@
                                                                     {
                                                                       "type": "Identifier",
                                                                       "text": "temp",
-                                                                      "line": 25,
+                                                                      "line": 21,
                                                                       "column": 20
                                                                     },
                                                                     {
@@ -1230,7 +1230,7 @@
                                                                         {
                                                                           "type": "Assign",
                                                                           "text": "=",
-                                                                          "line": 25,
+                                                                          "line": 21,
                                                                           "column": 25
                                                                         },
                                                                         {
@@ -1242,25 +1242,25 @@
                                                                                 {
                                                                                   "type": "Identifier",
                                                                                   "text": "arr",
-                                                                                  "line": 25,
+                                                                                  "line": 21,
                                                                                   "column": 27
                                                                                 },
                                                                                 {
                                                                                   "type": "LeftBrackets",
                                                                                   "text": "[",
-                                                                                  "line": 25,
+                                                                                  "line": 21,
                                                                                   "column": 30
                                                                                 },
                                                                                 {
                                                                                   "type": "Identifier",
                                                                                   "text": "j",
-                                                                                  "line": 25,
+                                                                                  "line": 21,
                                                                                   "column": 31
                                                                                 },
                                                                                 {
                                                                                   "type": "RightBrackets",
                                                                                   "text": "]",
-                                                                                  "line": 25,
+                                                                                  "line": 21,
                                                                                   "column": 32
                                                                                 }
                                                                               ]
@@ -1276,7 +1276,7 @@
                                                             {
                                                               "type": "Semi",
                                                               "text": ";",
-                                                              "line": 25,
+                                                              "line": 21,
                                                               "column": 33
                                                             }
                                                           ]
@@ -1298,25 +1298,25 @@
                                                                     {
                                                                       "type": "Identifier",
                                                                       "text": "arr",
-                                                                      "line": 26,
+                                                                      "line": 22,
                                                                       "column": 16
                                                                     },
                                                                     {
                                                                       "type": "LeftBrackets",
                                                                       "text": "[",
-                                                                      "line": 26,
+                                                                      "line": 22,
                                                                       "column": 19
                                                                     },
                                                                     {
                                                                       "type": "Identifier",
                                                                       "text": "j",
-                                                                      "line": 26,
+                                                                      "line": 22,
                                                                       "column": 20
                                                                     },
                                                                     {
                                                                       "type": "RightBrackets",
                                                                       "text": "]",
-                                                                      "line": 26,
+                                                                      "line": 22,
                                                                       "column": 21
                                                                     }
                                                                   ]
@@ -1327,7 +1327,7 @@
                                                                     {
                                                                       "type": "Assign",
                                                                       "text": "=",
-                                                                      "line": 26,
+                                                                      "line": 22,
                                                                       "column": 23
                                                                     },
                                                                     {
@@ -1339,13 +1339,13 @@
                                                                             {
                                                                               "type": "Identifier",
                                                                               "text": "arr",
-                                                                              "line": 26,
+                                                                              "line": 22,
                                                                               "column": 25
                                                                             },
                                                                             {
                                                                               "type": "LeftBrackets",
                                                                               "text": "[",
-                                                                              "line": 26,
+                                                                              "line": 22,
                                                                               "column": 28
                                                                             },
                                                                             {
@@ -1360,7 +1360,7 @@
                                                                                         {
                                                                                           "type": "Identifier",
                                                                                           "text": "j",
-                                                                                          "line": 26,
+                                                                                          "line": 22,
                                                                                           "column": 29
                                                                                         }
                                                                                       ]
@@ -1370,7 +1370,7 @@
                                                                                 {
                                                                                   "type": "Plus",
                                                                                   "text": "+",
-                                                                                  "line": 26,
+                                                                                  "line": 22,
                                                                                   "column": 31
                                                                                 },
                                                                                 {
@@ -1382,7 +1382,7 @@
                                                                                         {
                                                                                           "type": "IntegerLiteral",
                                                                                           "text": "1",
-                                                                                          "line": 26,
+                                                                                          "line": 22,
                                                                                           "column": 33
                                                                                         }
                                                                                       ]
@@ -1394,7 +1394,7 @@
                                                                             {
                                                                               "type": "RightBrackets",
                                                                               "text": "]",
-                                                                              "line": 26,
+                                                                              "line": 22,
                                                                               "column": 34
                                                                             }
                                                                           ]
@@ -1408,7 +1408,7 @@
                                                             {
                                                               "type": "Semi",
                                                               "text": ";",
-                                                              "line": 26,
+                                                              "line": 22,
                                                               "column": 35
                                                             }
                                                           ]
@@ -1430,13 +1430,13 @@
                                                                     {
                                                                       "type": "Identifier",
                                                                       "text": "arr",
-                                                                      "line": 27,
+                                                                      "line": 23,
                                                                       "column": 16
                                                                     },
                                                                     {
                                                                       "type": "LeftBrackets",
                                                                       "text": "[",
-                                                                      "line": 27,
+                                                                      "line": 23,
                                                                       "column": 19
                                                                     },
                                                                     {
@@ -1451,7 +1451,7 @@
                                                                                 {
                                                                                   "type": "Identifier",
                                                                                   "text": "j",
-                                                                                  "line": 27,
+                                                                                  "line": 23,
                                                                                   "column": 20
                                                                                 }
                                                                               ]
@@ -1461,7 +1461,7 @@
                                                                         {
                                                                           "type": "Plus",
                                                                           "text": "+",
-                                                                          "line": 27,
+                                                                          "line": 23,
                                                                           "column": 22
                                                                         },
                                                                         {
@@ -1473,7 +1473,7 @@
                                                                                 {
                                                                                   "type": "IntegerLiteral",
                                                                                   "text": "1",
-                                                                                  "line": 27,
+                                                                                  "line": 23,
                                                                                   "column": 24
                                                                                 }
                                                                               ]
@@ -1485,7 +1485,7 @@
                                                                     {
                                                                       "type": "RightBrackets",
                                                                       "text": "]",
-                                                                      "line": 27,
+                                                                      "line": 23,
                                                                       "column": 25
                                                                     }
                                                                   ]
@@ -1496,7 +1496,7 @@
                                                                     {
                                                                       "type": "Assign",
                                                                       "text": "=",
-                                                                      "line": 27,
+                                                                      "line": 23,
                                                                       "column": 27
                                                                     },
                                                                     {
@@ -1505,7 +1505,7 @@
                                                                         {
                                                                           "type": "Identifier",
                                                                           "text": "temp",
-                                                                          "line": 27,
+                                                                          "line": 23,
                                                                           "column": 29
                                                                         }
                                                                       ]
@@ -1517,7 +1517,7 @@
                                                             {
                                                               "type": "Semi",
                                                               "text": ";",
-                                                              "line": 27,
+                                                              "line": 23,
                                                               "column": 33
                                                             }
                                                           ]
@@ -1527,7 +1527,7 @@
                                                     {
                                                       "type": "RightBrace",
                                                       "text": "}",
-                                                      "line": 28,
+                                                      "line": 24,
                                                       "column": 12
                                                     }
                                                   ]
@@ -1539,10 +1539,304 @@
                                         {
                                           "type": "RightBrace",
                                           "text": "}",
-                                          "line": 29,
+                                          "line": 25,
                                           "column": 8
                                         }
                                       ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "RightBrace",
+                              "text": "}",
+                              "line": 26,
+                              "column": 4
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "ioStatement",
+                      "children": [
+                        {
+                          "rule": "outputStatement",
+                          "children": [
+                            {
+                              "type": "Cout",
+                              "text": "cout",
+                              "line": 27,
+                              "column": 4
+                            },
+                            {
+                              "type": "Stdout",
+                              "text": "<<",
+                              "line": 27,
+                              "column": 9
+                            },
+                            {
+                              "rule": "literal",
+                              "children": [
+                                {
+                                  "type": "StringLiteral",
+                                  "text": "\"排序后的数组是：\"",
+                                  "line": 27,
+                                  "column": 12
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Semi",
+                          "text": ";",
+                          "line": 27,
+                          "column": 22
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "forStatement",
+                      "children": [
+                        {
+                          "type": "For",
+                          "text": "for",
+                          "line": 28,
+                          "column": 4
+                        },
+                        {
+                          "type": "LeftParen",
+                          "text": "(",
+                          "line": 28,
+                          "column": 8
+                        },
+                        {
+                          "rule": "forConditionStatement",
+                          "children": [
+                            {
+                              "rule": "forConditionForCommon",
+                              "children": [
+                                {
+                                  "rule": "initialStatement",
+                                  "children": [
+                                    {
+                                      "rule": "declarationSpecifier",
+                                      "children": [
+                                        {
+                                          "rule": "typeSpecifier",
+                                          "children": [
+                                            {
+                                              "type": "Int",
+                                              "text": "int",
+                                              "line": 28,
+                                              "column": 9
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "rule": "declaratorList",
+                                      "children": [
+                                        {
+                                          "rule": "declarator",
+                                          "children": [
+                                            {
+                                              "type": "Identifier",
+                                              "text": "i",
+                                              "line": 28,
+                                              "column": 13
+                                            },
+                                            {
+                                              "rule": "initializer",
+                                              "children": [
+                                                {
+                                                  "type": "Assign",
+                                                  "text": "=",
+                                                  "line": 28,
+                                                  "column": 15
+                                                },
+                                                {
+                                                  "rule": "factor",
+                                                  "children": [
+                                                    {
+                                                      "type": "IntegerLiteral",
+                                                      "text": "0",
+                                                      "line": 28,
+                                                      "column": 17
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "Semi",
+                                  "text": ";",
+                                  "line": 28,
+                                  "column": 18
+                                },
+                                {
+                                  "rule": "conditionStatement",
+                                  "children": [
+                                    {
+                                      "type": "Identifier",
+                                      "text": "i",
+                                      "line": 28,
+                                      "column": 20
+                                    },
+                                    {
+                                      "rule": "conditionSpecifier",
+                                      "children": [
+                                        {
+                                          "type": "Less",
+                                          "text": "<",
+                                          "line": 28,
+                                          "column": 22
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Identifier",
+                                      "text": "n",
+                                      "line": 28,
+                                      "column": 24
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "Semi",
+                                  "text": ";",
+                                  "line": 28,
+                                  "column": 25
+                                },
+                                {
+                                  "rule": "iterator",
+                                  "children": [
+                                    {
+                                      "type": "PlusPlus",
+                                      "text": "++",
+                                      "line": 28,
+                                      "column": 27
+                                    },
+                                    {
+                                      "type": "Identifier",
+                                      "text": "i",
+                                      "line": 28,
+                                      "column": 29
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "RightParen",
+                          "text": ")",
+                          "line": 28,
+                          "column": 30
+                        },
+                        {
+                          "rule": "block",
+                          "children": [
+                            {
+                              "type": "LeftBrace",
+                              "text": "{",
+                              "line": 28,
+                              "column": 32
+                            },
+                            {
+                              "rule": "statement",
+                              "children": [
+                                {
+                                  "rule": "ioStatement",
+                                  "children": [
+                                    {
+                                      "rule": "outputStatement",
+                                      "children": [
+                                        {
+                                          "type": "Cout",
+                                          "text": "cout",
+                                          "line": 29,
+                                          "column": 8
+                                        },
+                                        {
+                                          "type": "Stdout",
+                                          "text": "<<",
+                                          "line": 29,
+                                          "column": 13
+                                        },
+                                        {
+                                          "rule": "arrayIdentifier",
+                                          "children": [
+                                            {
+                                              "type": "Identifier",
+                                              "text": "arr",
+                                              "line": 29,
+                                              "column": 16
+                                            },
+                                            {
+                                              "type": "LeftBrackets",
+                                              "text": "[",
+                                              "line": 29,
+                                              "column": 19
+                                            },
+                                            {
+                                              "type": "Identifier",
+                                              "text": "i",
+                                              "line": 29,
+                                              "column": 20
+                                            },
+                                            {
+                                              "type": "RightBrackets",
+                                              "text": "]",
+                                              "line": 29,
+                                              "column": 21
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Stdout",
+                                          "text": "<<",
+                                          "line": 29,
+                                          "column": 23
+                                        },
+                                        {
+                                          "rule": "literal",
+                                          "children": [
+                                            {
+                                              "type": "StringLiteral",
+                                              "text": "\" \"",
+                                              "line": 29,
+                                              "column": 26
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Semi",
+                                      "text": ";",
+                                      "line": 29,
+                                      "column": 29
                                     }
                                   ]
                                 }
@@ -1572,313 +1866,19 @@
                             {
                               "type": "Cout",
                               "text": "cout",
-                              "line": 33,
+                              "line": 31,
                               "column": 4
                             },
                             {
                               "type": "Stdout",
                               "text": "<<",
-                              "line": 33,
-                              "column": 9
-                            },
-                            {
-                              "rule": "literal",
-                              "children": [
-                                {
-                                  "type": "StringLiteral",
-                                  "text": "\"排序后的数组是：\"",
-                                  "line": 33,
-                                  "column": 12
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Semi",
-                          "text": ";",
-                          "line": 33,
-                          "column": 22
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "rule": "statement",
-                  "children": [
-                    {
-                      "rule": "forStatement",
-                      "children": [
-                        {
-                          "type": "For",
-                          "text": "for",
-                          "line": 34,
-                          "column": 4
-                        },
-                        {
-                          "type": "LeftParen",
-                          "text": "(",
-                          "line": 34,
-                          "column": 8
-                        },
-                        {
-                          "rule": "forConditionStatement",
-                          "children": [
-                            {
-                              "rule": "forConditionForCommon",
-                              "children": [
-                                {
-                                  "rule": "initialStatement",
-                                  "children": [
-                                    {
-                                      "rule": "declarationSpecifier",
-                                      "children": [
-                                        {
-                                          "rule": "typeSpecifier",
-                                          "children": [
-                                            {
-                                              "type": "Int",
-                                              "text": "int",
-                                              "line": 34,
-                                              "column": 9
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "rule": "declaratorList",
-                                      "children": [
-                                        {
-                                          "rule": "declarator",
-                                          "children": [
-                                            {
-                                              "type": "Identifier",
-                                              "text": "i",
-                                              "line": 34,
-                                              "column": 13
-                                            },
-                                            {
-                                              "rule": "initializer",
-                                              "children": [
-                                                {
-                                                  "type": "Assign",
-                                                  "text": "=",
-                                                  "line": 34,
-                                                  "column": 15
-                                                },
-                                                {
-                                                  "rule": "factor",
-                                                  "children": [
-                                                    {
-                                                      "type": "IntegerLiteral",
-                                                      "text": "0",
-                                                      "line": 34,
-                                                      "column": 17
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "Semi",
-                                  "text": ";",
-                                  "line": 34,
-                                  "column": 18
-                                },
-                                {
-                                  "rule": "conditionStatement",
-                                  "children": [
-                                    {
-                                      "type": "Identifier",
-                                      "text": "i",
-                                      "line": 34,
-                                      "column": 20
-                                    },
-                                    {
-                                      "rule": "conditionSpecifier",
-                                      "children": [
-                                        {
-                                          "type": "Less",
-                                          "text": "<",
-                                          "line": 34,
-                                          "column": 22
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "Identifier",
-                                      "text": "n",
-                                      "line": 34,
-                                      "column": 24
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "Semi",
-                                  "text": ";",
-                                  "line": 34,
-                                  "column": 25
-                                },
-                                {
-                                  "rule": "iterator",
-                                  "children": [
-                                    {
-                                      "type": "PlusPlus",
-                                      "text": "++",
-                                      "line": 34,
-                                      "column": 27
-                                    },
-                                    {
-                                      "type": "Identifier",
-                                      "text": "i",
-                                      "line": 34,
-                                      "column": 29
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "RightParen",
-                          "text": ")",
-                          "line": 34,
-                          "column": 30
-                        },
-                        {
-                          "rule": "block",
-                          "children": [
-                            {
-                              "type": "LeftBrace",
-                              "text": "{",
-                              "line": 34,
-                              "column": 32
-                            },
-                            {
-                              "rule": "statement",
-                              "children": [
-                                {
-                                  "rule": "ioStatement",
-                                  "children": [
-                                    {
-                                      "rule": "outputStatement",
-                                      "children": [
-                                        {
-                                          "type": "Cout",
-                                          "text": "cout",
-                                          "line": 35,
-                                          "column": 8
-                                        },
-                                        {
-                                          "type": "Stdout",
-                                          "text": "<<",
-                                          "line": 35,
-                                          "column": 13
-                                        },
-                                        {
-                                          "rule": "arrayIdentifier",
-                                          "children": [
-                                            {
-                                              "type": "Identifier",
-                                              "text": "arr",
-                                              "line": 35,
-                                              "column": 16
-                                            },
-                                            {
-                                              "type": "LeftBrackets",
-                                              "text": "[",
-                                              "line": 35,
-                                              "column": 19
-                                            },
-                                            {
-                                              "type": "Identifier",
-                                              "text": "i",
-                                              "line": 35,
-                                              "column": 20
-                                            },
-                                            {
-                                              "type": "RightBrackets",
-                                              "text": "]",
-                                              "line": 35,
-                                              "column": 21
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "type": "Stdout",
-                                          "text": "<<",
-                                          "line": 35,
-                                          "column": 23
-                                        },
-                                        {
-                                          "rule": "literal",
-                                          "children": [
-                                            {
-                                              "type": "StringLiteral",
-                                              "text": "\" \"",
-                                              "line": 35,
-                                              "column": 26
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "Semi",
-                                      "text": ";",
-                                      "line": 35,
-                                      "column": 29
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "RightBrace",
-                              "text": "}",
-                              "line": 36,
-                              "column": 4
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "rule": "statement",
-                  "children": [
-                    {
-                      "rule": "ioStatement",
-                      "children": [
-                        {
-                          "rule": "outputStatement",
-                          "children": [
-                            {
-                              "type": "Cout",
-                              "text": "cout",
-                              "line": 37,
-                              "column": 4
-                            },
-                            {
-                              "type": "Stdout",
-                              "text": "<<",
-                              "line": 37,
+                              "line": 31,
                               "column": 9
                             },
                             {
                               "type": "EndLine",
                               "text": "endl",
-                              "line": 37,
+                              "line": 31,
                               "column": 12
                             }
                           ]
@@ -1886,7 +1886,7 @@
                         {
                           "type": "Semi",
                           "text": ";",
-                          "line": 37,
+                          "line": 31,
                           "column": 16
                         }
                       ]
@@ -1902,7 +1902,7 @@
                         {
                           "type": "Return",
                           "text": "return",
-                          "line": 39,
+                          "line": 33,
                           "column": 4
                         },
                         {
@@ -1914,7 +1914,7 @@
                                 {
                                   "type": "IntegerLiteral",
                                   "text": "0",
-                                  "line": 39,
+                                  "line": 33,
                                   "column": 11
                                 }
                               ]
@@ -1924,7 +1924,7 @@
                         {
                           "type": "Semi",
                           "text": ";",
-                          "line": 39,
+                          "line": 33,
                           "column": 12
                         }
                       ]
@@ -1934,7 +1934,7 @@
                 {
                   "type": "RightBrace",
                   "text": "}",
-                  "line": 40,
+                  "line": 34,
                   "column": 0
                 }
               ]
@@ -1946,7 +1946,7 @@
     {
       "type": "LineComment",
       "text": "<EOF>",
-      "line": 42,
+      "line": 36,
       "column": 0
     }
   ]
