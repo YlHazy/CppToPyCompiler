@@ -1,25 +1,28 @@
+
+def convert_input(user_input):
+    try:
+        return int(user_input)
+    except ValueError:
+        try:
+            return float(user_input)
+        except ValueError:
+            return user_input
+def isPalindrome(s: str) -> bool:
+    str_len = len(s)
+    i = 0
+    for i in range(int(i), int(str_len/2)):
+        if s[i]!=s[str_len-1-i]:
+            return False
+    return True
 if __name__ == '__main__':
-    n = None
-    print("请输入数组的长度：")
-    n= input()
-    arr = [0] * 100
-    print("请输入 " << n << " 个整数：")
-    i = 0
-    for i in range(i, n):
-        i += 1
-        arr[i]= input()
-    i = 0
-    for i in range(i, n-1):
-        i += 1
-        j = 0
-        for j in range(j, n-i-1):
-            j += 1
-            temp=arr[j] = =arr[j]
-            arr[j]=arr[j+1]
-            arr[j+1]=temp
-    print("排序后的数组是：")
-    i = 0
-    for i in range(i, n):
-        i += 1
-        print(arr[i] + " ")
-    print("\n")
+    s = None
+    s= input()
+    s = convert_input(s)
+    ans=isPalindrome(s)
+    while s>ans:
+        print("False" + "\n")
+        a=1
+    if ans:
+        print("True" + "\n")
+        elif ans==false:
+            print("False" + "\n")

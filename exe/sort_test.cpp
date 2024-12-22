@@ -9,7 +9,6 @@ using namespace std;
 
         int arr[100];
 
-        cout << "请输入 " << n << " 个整数：";
         for (int i = 0; i < n; ++i) {
             cin >> arr[i];
         }

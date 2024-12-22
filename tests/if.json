@@ -1,0 +1,1048 @@
+{
+  "rule": "program",
+  "children": [
+    {
+      "rule": "preprocessorDirective",
+      "children": [
+        {
+          "rule": "includeDirective",
+          "children": [
+            {
+              "type": "Include",
+              "text": "#include",
+              "line": 1,
+              "column": 0
+            },
+            {
+              "rule": "header",
+              "children": [
+                {
+                  "type": "Less",
+                  "text": "<",
+                  "line": 1,
+                  "column": 9
+                },
+                {
+                  "rule": "headFileName",
+                  "children": [
+                    {
+                      "type": "Identifier",
+                      "text": "iostream",
+                      "line": 1,
+                      "column": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "Greater",
+                  "text": ">",
+                  "line": 1,
+                  "column": 18
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "preprocessorDirective",
+      "children": [
+        {
+          "rule": "includeDirective",
+          "children": [
+            {
+              "type": "Include",
+              "text": "#include",
+              "line": 1,
+              "column": 20
+            },
+            {
+              "rule": "header",
+              "children": [
+                {
+                  "type": "Less",
+                  "text": "<",
+                  "line": 1,
+                  "column": 29
+                },
+                {
+                  "rule": "headFileName",
+                  "children": [
+                    {
+                      "rule": "stlFileName",
+                      "children": [
+                        {
+                          "type": "String",
+                          "text": "string",
+                          "line": 1,
+                          "column": 30
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Greater",
+                  "text": ">",
+                  "line": 1,
+                  "column": 36
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "preprocessorDirective",
+      "children": [
+        {
+          "rule": "usingDirective",
+          "children": [
+            {
+              "type": "Using",
+              "text": "using",
+              "line": 1,
+              "column": 38
+            },
+            {
+              "type": "Namespace",
+              "text": "namespace",
+              "line": 1,
+              "column": 44
+            },
+            {
+              "type": "Identifier",
+              "text": "std",
+              "line": 1,
+              "column": 54
+            },
+            {
+              "type": "Semi",
+              "text": ";",
+              "line": 1,
+              "column": 57
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "declaration",
+      "children": [
+        {
+          "rule": "mainFunctionDeclaration",
+          "children": [
+            {
+              "rule": "declarationSpecifier",
+              "children": [
+                {
+                  "rule": "typeSpecifier",
+                  "children": [
+                    {
+                      "type": "Int",
+                      "text": "int",
+                      "line": 1,
+                      "column": 59
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Main",
+              "text": "main",
+              "line": 1,
+              "column": 63
+            },
+            {
+              "type": "LeftParen",
+              "text": "(",
+              "line": 1,
+              "column": 67
+            },
+            {
+              "type": "RightParen",
+              "text": ")",
+              "line": 1,
+              "column": 68
+            },
+            {
+              "rule": "block",
+              "children": [
+                {
+                  "type": "LeftBrace",
+                  "text": "{",
+                  "line": 1,
+                  "column": 70
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "declarationStatement",
+                      "children": [
+                        {
+                          "rule": "declarationSpecifier",
+                          "children": [
+                            {
+                              "rule": "typeSpecifier",
+                              "children": [
+                                {
+                                  "type": "String",
+                                  "text": "string",
+                                  "line": 1,
+                                  "column": 72
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "rule": "declaratorList",
+                          "children": [
+                            {
+                              "rule": "declarator",
+                              "children": [
+                                {
+                                  "type": "Identifier",
+                                  "text": "s",
+                                  "line": 1,
+                                  "column": 79
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Semi",
+                          "text": ";",
+                          "line": 1,
+                          "column": 80
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "ioStatement",
+                      "children": [
+                        {
+                          "rule": "inputStatement",
+                          "children": [
+                            {
+                              "type": "Cin",
+                              "text": "cin",
+                              "line": 1,
+                              "column": 82
+                            },
+                            {
+                              "type": "Stdin",
+                              "text": ">>",
+                              "line": 1,
+                              "column": 86
+                            },
+                            {
+                              "type": "Identifier",
+                              "text": "s",
+                              "line": 1,
+                              "column": 89
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Semi",
+                          "text": ";",
+                          "line": 1,
+                          "column": 90
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "declarationStatement",
+                      "children": [
+                        {
+                          "rule": "declarationSpecifier",
+                          "children": [
+                            {
+                              "rule": "typeSpecifier",
+                              "children": [
+                                {
+                                  "type": "Bool",
+                                  "text": "bool",
+                                  "line": 1,
+                                  "column": 92
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "rule": "declaratorList",
+                          "children": [
+                            {
+                              "rule": "declarator",
+                              "children": [
+                                {
+                                  "type": "Identifier",
+                                  "text": "is",
+                                  "line": 1,
+                                  "column": 97
+                                },
+                                {
+                                  "rule": "initializer",
+                                  "children": [
+                                    {
+                                      "type": "Assign",
+                                      "text": "=",
+                                      "line": 1,
+                                      "column": 100
+                                    },
+                                    {
+                                      "rule": "factor",
+                                      "children": [
+                                        {
+                                          "type": "BooleanLiteral",
+                                          "text": "true",
+                                          "line": 1,
+                                          "column": 102
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Semi",
+                          "text": ";",
+                          "line": 1,
+                          "column": 106
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "declarationStatement",
+                      "children": [
+                        {
+                          "rule": "declarationSpecifier",
+                          "children": [
+                            {
+                              "rule": "typeSpecifier",
+                              "children": [
+                                {
+                                  "type": "Int",
+                                  "text": "int",
+                                  "line": 1,
+                                  "column": 108
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "rule": "declaratorList",
+                          "children": [
+                            {
+                              "rule": "declarator",
+                              "children": [
+                                {
+                                  "type": "Identifier",
+                                  "text": "len",
+                                  "line": 1,
+                                  "column": 112
+                                },
+                                {
+                                  "rule": "initializer",
+                                  "children": [
+                                    {
+                                      "type": "Assign",
+                                      "text": "=",
+                                      "line": 1,
+                                      "column": 116
+                                    },
+                                    {
+                                      "rule": "factor",
+                                      "children": [
+                                        {
+                                          "rule": "functionCall",
+                                          "children": [
+                                            {
+                                              "rule": "functionSrc",
+                                              "children": [
+                                                {
+                                                  "type": "Identifier",
+                                                  "text": "s",
+                                                  "line": 1,
+                                                  "column": 118
+                                                },
+                                                {
+                                                  "type": "Dot",
+                                                  "text": ".",
+                                                  "line": 1,
+                                                  "column": 119
+                                                },
+                                                {
+                                                  "type": "Identifier",
+                                                  "text": "length",
+                                                  "line": 1,
+                                                  "column": 120
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "rule": "functionParams",
+                                              "children": [
+                                                {
+                                                  "type": "LeftParen",
+                                                  "text": "(",
+                                                  "line": 1,
+                                                  "column": 126
+                                                },
+                                                {
+                                                  "type": "RightParen",
+                                                  "text": ")",
+                                                  "line": 1,
+                                                  "column": 127
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Semi",
+                          "text": ";",
+                          "line": 1,
+                          "column": 128
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "forStatement",
+                      "children": [
+                        {
+                          "type": "For",
+                          "text": "for",
+                          "line": 1,
+                          "column": 130
+                        },
+                        {
+                          "type": "LeftParen",
+                          "text": "(",
+                          "line": 1,
+                          "column": 134
+                        },
+                        {
+                          "rule": "forConditionStatement",
+                          "children": [
+                            {
+                              "rule": "forConditionForCommon",
+                              "children": [
+                                {
+                                  "rule": "initialStatement",
+                                  "children": [
+                                    {
+                                      "rule": "declarationSpecifier",
+                                      "children": [
+                                        {
+                                          "rule": "typeSpecifier",
+                                          "children": [
+                                            {
+                                              "type": "Int",
+                                              "text": "int",
+                                              "line": 1,
+                                              "column": 135
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "rule": "declaratorList",
+                                      "children": [
+                                        {
+                                          "rule": "declarator",
+                                          "children": [
+                                            {
+                                              "type": "Identifier",
+                                              "text": "i",
+                                              "line": 1,
+                                              "column": 139
+                                            },
+                                            {
+                                              "rule": "initializer",
+                                              "children": [
+                                                {
+                                                  "type": "Assign",
+                                                  "text": "=",
+                                                  "line": 1,
+                                                  "column": 141
+                                                },
+                                                {
+                                                  "rule": "factor",
+                                                  "children": [
+                                                    {
+                                                      "type": "IntegerLiteral",
+                                                      "text": "0",
+                                                      "line": 1,
+                                                      "column": 143
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "Semi",
+                                  "text": ";",
+                                  "line": 1,
+                                  "column": 144
+                                },
+                                {
+                                  "rule": "conditionStatement",
+                                  "children": [
+                                    {
+                                      "type": "Identifier",
+                                      "text": "i",
+                                      "line": 1,
+                                      "column": 146
+                                    },
+                                    {
+                                      "rule": "conditionSpecifier",
+                                      "children": [
+                                        {
+                                          "type": "Less",
+                                          "text": "<",
+                                          "line": 1,
+                                          "column": 148
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "rule": "expression",
+                                      "children": [
+                                        {
+                                          "rule": "term",
+                                          "children": [
+                                            {
+                                              "rule": "factor",
+                                              "children": [
+                                                {
+                                                  "type": "Identifier",
+                                                  "text": "len",
+                                                  "line": 1,
+                                                  "column": 150
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "Div",
+                                              "text": "/",
+                                              "line": 1,
+                                              "column": 154
+                                            },
+                                            {
+                                              "rule": "factor",
+                                              "children": [
+                                                {
+                                                  "type": "IntegerLiteral",
+                                                  "text": "2",
+                                                  "line": 1,
+                                                  "column": 156
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "Semi",
+                                  "text": ";",
+                                  "line": 1,
+                                  "column": 157
+                                },
+                                {
+                                  "rule": "iterator",
+                                  "children": [
+                                    {
+                                      "type": "PlusPlus",
+                                      "text": "++",
+                                      "line": 1,
+                                      "column": 159
+                                    },
+                                    {
+                                      "type": "Identifier",
+                                      "text": "i",
+                                      "line": 1,
+                                      "column": 161
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "RightParen",
+                          "text": ")",
+                          "line": 1,
+                          "column": 162
+                        },
+                        {
+                          "rule": "block",
+                          "children": [
+                            {
+                              "type": "LeftBrace",
+                              "text": "{",
+                              "line": 1,
+                              "column": 164
+                            },
+                            {
+                              "rule": "statement",
+                              "children": [
+                                {
+                                  "rule": "ifStatement",
+                                  "children": [
+                                    {
+                                      "type": "If",
+                                      "text": "if",
+                                      "line": 1,
+                                      "column": 166
+                                    },
+                                    {
+                                      "type": "LeftParen",
+                                      "text": "(",
+                                      "line": 1,
+                                      "column": 169
+                                    },
+                                    {
+                                      "rule": "ifWhileConditionStatement",
+                                      "children": [
+                                        {
+                                          "rule": "ifWhileConditionTerm",
+                                          "children": [
+                                            {
+                                              "rule": "conditionStatement",
+                                              "children": [
+                                                {
+                                                  "rule": "arrayIdentifier",
+                                                  "children": [
+                                                    {
+                                                      "type": "Identifier",
+                                                      "text": "s",
+                                                      "line": 1,
+                                                      "column": 170
+                                                    },
+                                                    {
+                                                      "type": "LeftBrackets",
+                                                      "text": "[",
+                                                      "line": 1,
+                                                      "column": 171
+                                                    },
+                                                    {
+                                                      "type": "Identifier",
+                                                      "text": "i",
+                                                      "line": 1,
+                                                      "column": 172
+                                                    },
+                                                    {
+                                                      "type": "RightBrackets",
+                                                      "text": "]",
+                                                      "line": 1,
+                                                      "column": 173
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "rule": "conditionSpecifier",
+                                                  "children": [
+                                                    {
+                                                      "type": "NotEqual",
+                                                      "text": "!=",
+                                                      "line": 1,
+                                                      "column": 175
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "rule": "arrayIdentifier",
+                                                  "children": [
+                                                    {
+                                                      "type": "Identifier",
+                                                      "text": "s",
+                                                      "line": 1,
+                                                      "column": 178
+                                                    },
+                                                    {
+                                                      "type": "LeftBrackets",
+                                                      "text": "[",
+                                                      "line": 1,
+                                                      "column": 179
+                                                    },
+                                                    {
+                                                      "rule": "expression",
+                                                      "children": [
+                                                        {
+                                                          "rule": "term",
+                                                          "children": [
+                                                            {
+                                                              "rule": "factor",
+                                                              "children": [
+                                                                {
+                                                                  "type": "Identifier",
+                                                                  "text": "len",
+                                                                  "line": 1,
+                                                                  "column": 180
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "type": "Minus",
+                                                          "text": "-",
+                                                          "line": 1,
+                                                          "column": 184
+                                                        },
+                                                        {
+                                                          "rule": "term",
+                                                          "children": [
+                                                            {
+                                                              "rule": "factor",
+                                                              "children": [
+                                                                {
+                                                                  "type": "IntegerLiteral",
+                                                                  "text": "1",
+                                                                  "line": 1,
+                                                                  "column": 186
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "type": "Minus",
+                                                          "text": "-",
+                                                          "line": 1,
+                                                          "column": 188
+                                                        },
+                                                        {
+                                                          "rule": "term",
+                                                          "children": [
+                                                            {
+                                                              "rule": "factor",
+                                                              "children": [
+                                                                {
+                                                                  "type": "Identifier",
+                                                                  "text": "i",
+                                                                  "line": 1,
+                                                                  "column": 190
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "type": "RightBrackets",
+                                                      "text": "]",
+                                                      "line": 1,
+                                                      "column": 191
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "RightParen",
+                                      "text": ")",
+                                      "line": 1,
+                                      "column": 192
+                                    },
+                                    {
+                                      "rule": "statement",
+                                      "children": [
+                                        {
+                                          "rule": "assignStatement",
+                                          "children": [
+                                            {
+                                              "rule": "declarator",
+                                              "children": [
+                                                {
+                                                  "type": "Identifier",
+                                                  "text": "is",
+                                                  "line": 1,
+                                                  "column": 194
+                                                },
+                                                {
+                                                  "rule": "initializer",
+                                                  "children": [
+                                                    {
+                                                      "type": "Assign",
+                                                      "text": "=",
+                                                      "line": 1,
+                                                      "column": 197
+                                                    },
+                                                    {
+                                                      "rule": "factor",
+                                                      "children": [
+                                                        {
+                                                          "type": "BooleanLiteral",
+                                                          "text": "false",
+                                                          "line": 1,
+                                                          "column": 199
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "Semi",
+                                              "text": ";",
+                                              "line": 1,
+                                              "column": 204
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "RightBrace",
+                              "text": "}",
+                              "line": 1,
+                              "column": 206
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "ifStatement",
+                      "children": [
+                        {
+                          "type": "If",
+                          "text": "if",
+                          "line": 1,
+                          "column": 208
+                        },
+                        {
+                          "type": "LeftParen",
+                          "text": "(",
+                          "line": 1,
+                          "column": 211
+                        },
+                        {
+                          "rule": "ifWhileConditionStatement",
+                          "children": [
+                            {
+                              "rule": "ifWhileConditionTerm",
+                              "children": [
+                                {
+                                  "rule": "conditionStatement",
+                                  "children": [
+                                    {
+                                      "type": "Identifier",
+                                      "text": "is",
+                                      "line": 1,
+                                      "column": 212
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "RightParen",
+                          "text": ")",
+                          "line": 1,
+                          "column": 214
+                        },
+                        {
+                          "rule": "block",
+                          "children": [
+                            {
+                              "type": "LeftBrace",
+                              "text": "{",
+                              "line": 1,
+                              "column": 216
+                            },
+                            {
+                              "rule": "statement",
+                              "children": [
+                                {
+                                  "rule": "ioStatement",
+                                  "children": [
+                                    {
+                                      "rule": "outputStatement",
+                                      "children": [
+                                        {
+                                          "type": "Cout",
+                                          "text": "cout",
+                                          "line": 1,
+                                          "column": 218
+                                        },
+                                        {
+                                          "type": "Stdout",
+                                          "text": "<<",
+                                          "line": 1,
+                                          "column": 223
+                                        },
+                                        {
+                                          "rule": "literal",
+                                          "children": [
+                                            {
+                                              "type": "StringLiteral",
+                                              "text": "\"True\" << endl; } else { cout << \"False\"",
+                                              "line": 1,
+                                              "column": 226
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Stdout",
+                                          "text": "<<",
+                                          "line": 1,
+                                          "column": 267
+                                        },
+                                        {
+                                          "type": "EndLine",
+                                          "text": "endl",
+                                          "line": 1,
+                                          "column": 270
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Semi",
+                                      "text": ";",
+                                      "line": 1,
+                                      "column": 274
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "RightBrace",
+                              "text": "}",
+                              "line": 1,
+                              "column": 276
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "rule": "statement",
+                  "children": [
+                    {
+                      "rule": "endStatement",
+                      "children": [
+                        {
+                          "type": "Return",
+                          "text": "return",
+                          "line": 1,
+                          "column": 278
+                        },
+                        {
+                          "rule": "returnResult",
+                          "children": [
+                            {
+                              "rule": "factor",
+                              "children": [
+                                {
+                                  "type": "IntegerLiteral",
+                                  "text": "0",
+                                  "line": 1,
+                                  "column": 285
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Semi",
+                          "text": ";",
+                          "line": 1,
+                          "column": 286
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "RightBrace",
+                  "text": "}",
+                  "line": 1,
+                  "column": 288
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "LineComment",
+      "text": "<EOF>",
+      "line": 2,
+      "column": 0
+    }
+  ]
+}
