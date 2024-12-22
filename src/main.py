@@ -169,6 +169,9 @@ class CPPParserGUI:
         # 添加顶部输入框
         self.create_input_section(content_pane)
 
+        # 添加输入参数区域
+        self.create_param_section(content_pane)
+
         # 添加中部分析结果
         analysis_pane = ttk.PanedWindow(content_pane, orient=tk.HORIZONTAL)
         content_pane.add(analysis_pane, weight=2)
@@ -216,6 +219,16 @@ class CPPParserGUI:
 
         self.text_input = scrolledtext.ScrolledText(input_frame, wrap=tk.WORD, height=10, font=("Consolas", 11))
         self.text_input.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+    
+    def create_param_section(self, parent):
+        param_frame = tk.Frame(parent, bg="#f9f9f9", bd=2, relief=tk.GROOVE)
+        parent.add(param_frame, weight=1)
+
+        label = tk.Label(param_frame, text="输入参数（空格分隔）：", bg="#f9f9f9", font=("Arial", 12, "bold"))
+        label.pack(anchor="nw", padx=5, pady=5)
+
+        self.param_values = tk.Entry(param_frame, font=("Consolas", 11))
+        self.param_values.pack(fill=tk.X, padx=5, pady=5,ipady=35)
 
     def create_analysis_section(self, parent):
         # 词法分析
@@ -270,6 +283,7 @@ class CPPParserGUI:
                 code = f.read()
             self.text_input.delete(1.0, tk.END)
             self.text_input.insert(tk.END, code)
+
 
     def perform_lexical_analysis(self):
         code = self.text_input.get(1.0, tk.END)
@@ -334,6 +348,7 @@ class CPPParserGUI:
         self.lex_result_display.delete(1.0, tk.END)
         self.converted_code_display.delete(1.0, tk.END)
         self.execution_result_display.delete(1.0, tk.END)
+        self.param_values.delete(0, tk.END)
         # 清除保存的结果
         if hasattr(self, 'analysis_result'):
             del self.analysis_result
@@ -352,58 +367,49 @@ class CPPParserGUI:
         self.converted_code_display.delete(1.0, tk.END)
         self.converted_code_display.insert(tk.END, python_code)
 
+
     def run_converted_code(self):
+        import subprocess
         python_code = self.converted_code_display.get(1.0, tk.END).strip()
         if not python_code:
-            messagebox.showwarning("提示", "请先转换代码后再运行。")
+            messagebox.showwarning("提示", "请输入代码后再运行。")
             return
 
+        params = self.param_values.get().strip()
+        if not params:
+            messagebox.showwarning("提示", "请输入参数值后再运行。")
+            return
+
+        inputs = params.split()
+
+        # 将输入值拼接为换行分隔字符串
+        simulated_input_str = "\n".join(inputs) + "\n"
+
+        temp_script_path = "temp_script.py"
         try:
-            import subprocess
-            # 更精确地匹配赋值语句中的 `input()` 调用
-            input_match = re.search(r'(\w+)\s*=\s*input\((.*?)\)', python_code)
-
-            simulated_input = None
-            if input_match:
-                # 提取变量名和提示文字
-                variable_name = input_match.group(1)
-                prompt_text = input_match.group(2).strip("'\" ") if input_match.group(2) else " "
-                simulated_input = simpledialog.askstring(
-                    "模拟输入",
-                    f"检测到变量 `{variable_name}` 的输入提示：{prompt_text}",
-                    initialvalue="模拟值"
-                )
-                if simulated_input is None:
-                    messagebox.showinfo("提示", "取消运行代码。")
-                    return
-
-            # 写入临时脚本
-            temp_script_path = "temp_script.py"
             with open(temp_script_path, "w", encoding="utf-8") as temp_file:
                 temp_file.write(python_code)
 
-            # 运行 Python 脚本
+            # 运行代码
             result = subprocess.run(
                 ["python", temp_script_path],
-                input=simulated_input,
+                input=simulated_input_str,
                 text=True,
-                capture_output=True
+                capture_output=True,
             )
 
-            # 显示运行结果
             self.execution_result_display.delete(1.0, tk.END)
             if result.stdout.strip():
-                self.execution_result_display.insert(tk.END, "标准输出：\n" + result.stdout)
+                self.execution_result_display.insert(tk.END, result.stdout)
             if result.stderr.strip():
                 self.execution_result_display.insert(tk.END, "错误输出：\n" + result.stderr)
 
         except Exception as e:
             messagebox.showerror("运行错误", f"运行代码时发生错误：\n{e}")
-        finally:
-            # 清理临时脚本
-            if os.path.exists(temp_script_path):
-                os.remove(temp_script_path)
-
+        # finally:
+            # if os.path.exists(temp_script_path):
+                # os.remove(temp_script_path)
+           
 def main():
     root = tk.Tk()
     app = CPPParserGUI(root)

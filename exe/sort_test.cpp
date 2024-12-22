@@ -3,10 +3,7 @@ using namespace std;
 
     int main() {
         int n;
-
-        cout << "请输入数组的长度：";
         cin >> n;
-
         int arr[100];
 
         for (int i = 0; i < n; ++i) {
@@ -22,11 +19,9 @@ using namespace std;
             }
         }
 
-        cout << "排序后的数组是：";
         for (int i = 0; i < n; ++i) {
-            cout << arr[i] << "nnn";
+            cout << arr[i];
         }
         cout << endl;
-
         return 0;
     }
