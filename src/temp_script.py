@@ -1,4 +1,3 @@
-
 def convert_input(user_input):
     try:
         return int(user_input)
