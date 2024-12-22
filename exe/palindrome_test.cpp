@@ -19,14 +19,11 @@ int main() {
     
     // 调用 isPalindrome 函数
     bool ans = isPalindrome(s);
-    while(s>ans){
-        cout << "False" << endl;
-        int a = 1;
-    }
+    
     // 输出结果
     if (ans) {
         cout << "True" << endl;
-    } else if (ans == false) {
+    } else {
         cout << "False" << endl;
     }
 
