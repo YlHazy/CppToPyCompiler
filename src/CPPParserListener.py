@@ -1,6 +1,5 @@
 # Generated from CPPParser.g4 by ANTLR 4.13.2
 from antlr4 import *
-import autopep8
 from CPPLexer import CPPLexer
 if "." in __name__:
     from .CPPParser import CPPParser
@@ -14,6 +13,8 @@ class CPPParserListener(ParseTreeListener):
     def __init__(self, out_path="out.py"):
 
         self.out_path = out_path
+        self.symbol_table = []
+        self.current_env = ""
 
     output = """
 def convert_input(user_input):
@@ -33,6 +34,7 @@ def convert_input(user_input):
 
     def addNewLine(self):
         self.output += '\n'
+
     # Enter a parse tree produced by CPPParser#program.
     def enterProgram(self, ctx:CPPParser.ProgramContext):
         pass
@@ -42,6 +44,7 @@ def convert_input(user_input):
         # compilation_theory.antlr_approach.main.CppToPython.output_string = self.output
         with open(f'{self.out_path}', 'w') as file:
             file.write(self.output)
+        print(self.symbol_table)
         pass
 
     # Enter a parse tree produced by CPPParser#preprocessorDirective.
@@ -109,8 +112,10 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#mainFunctionDeclaration.
     def enterMainFunctionDeclaration(self, ctx:CPPParser.MainFunctionDeclarationContext):
-        self.output += ("if __name__ == '__main__':\n")
+        self.output += "if __name__ == '__main__':\n"
         self.indent += 1
+        self.symbol_table.append(["main", "function", "NaN", "global"])
+        self.current_env = "main_function"
         pass
 
     # Exit a parse tree produced by CPPParser#mainFunctionDeclaration.
@@ -120,6 +125,9 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#functionDeclaration.
     def enterFunctionDeclaration(self, ctx:CPPParser.FunctionDeclarationContext):
+        self.current_env = f"{ctx.Identifier().getText()}_function"
+        self.symbol_table.append([ctx.Identifier().getText(), "function", "NaN", "global"])
+
         for child in ctx.getChild(0).children:  # 找到 typeSpecifier -> bool
             if child.getText() == "bool":
                 return_type = "bool"
@@ -130,13 +138,18 @@ def convert_input(user_input):
         
             if param.declarationSpecifier().typeSpecifier().getText() == "string":
                 param_type = "str"
-            param_name = param.declaratorList().getChild(0).Identifier().getText()
 
+            param_name = param.declaratorList().getChild(0).Identifier().getText()
 
             # 处理参数
             if param_type and param_name:
                 # const 和 & 可以忽略，直接保存参数名和类型
                 params.append(f"{param_name}: {param_type}")
+
+            if param_type == "str":
+                param_type = "string"
+
+            self.symbol_table.append([param_name, param_type, "NaN", self.current_env])
         
         # 将所有部分拼接成 Python 函数声明
         param_str = ", ".join(params)
@@ -270,8 +283,10 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#declaratorList.
     def enterDeclaratorList(self, ctx:CPPParser.DeclaratorListContext):
-        if(ctx.parentCtx.parentCtx.getRuleIndex() == 10):
+        if ctx.parentCtx.parentCtx.getRuleIndex() == 10:
             return
+        var_type = ctx.parentCtx.getChild(0).getText()
+
         # 获取变量名
         declarators = ctx.declarator()  # 获取所有声明的变量
         parent_rule = ctx.parentCtx.parentCtx.parentCtx.parentCtx.getRuleIndex() if ctx.parentCtx else ""
@@ -281,7 +296,7 @@ def convert_input(user_input):
         # 对每个变量进行处理
         for declarator in declarators:
             var_name = declarator.getText()  # 获取变量名
-            # 如果存在初始化值
+
             if declarator.arrayIdentifier():
             # 处理数组声明
                 var_name = declarator.getChild(0).getChild(0).getText()  # 获取变量名
@@ -289,12 +304,16 @@ def convert_input(user_input):
                 array_identifier = declarator.arrayIdentifier()
                 size = array_identifier.expression().getText()  # 获取数组大小
                 self.output += f"{self.getIndent()}{var_name} = [0] * {size}\n"  # 使用零初始化数组
+
+                self.symbol_table.append([var_name, f"array({var_type})", f"[0] * {size}", self.current_env])
+
+            # 如果存在初始化值
             elif declarator.initializer():
                 init_value = declarator.initializer().getText()  # 获取初始化值
                 var_name = declarator.Identifier().getText()  # 获取变量名
                 init_value = declarator.initializer().getText()  # 获取初始化值
-                if (declarator.initializer().getChild(1).getChild(0).getChild(0)):
-                    if (declarator.initializer().getChild(1).getChild(0).getRuleIndex() == 16):
+                if declarator.initializer().getChild(1).getChild(0).getChild(0):
+                    if declarator.initializer().getChild(1).getChild(0).getRuleIndex() == 16:
                         function_src = declarator.initializer().getChild(1).getChild(0).getChild(0)
                         # print(f"function_src: {function_src.getText()}")
                         if len(function_src.children) == 3:  # 必须是对象.方法的形式
@@ -307,11 +326,15 @@ def convert_input(user_input):
                                 return
 
                 init_value = init_value.replace("false", "False").replace("true", "True")
-                self.output += (f"{self.getIndent()}{var_name}{init_value}\n")
+                self.output += f"{self.getIndent()}{var_name}{init_value}\n"
+
+                self.symbol_table.append([var_name, var_type, init_value[1:], self.current_env])
 
             else:
                 # 如果没有初始化值，直接声明变量
-                self.output+=(f"{self.getIndent()}{var_name} = None\n")  # 默认用 None 来表示未初始化
+                self.output +=  f"{self.getIndent()}{var_name} = None\n"  # 默认用 None 来表示未初始化
+                self.symbol_table.append([var_name, var_type, "NaN", self.current_env])
+
 
     # Exit a parse tree produced by CPPParser#declaratorList.
     def exitDeclaratorList(self, ctx:CPPParser.DeclaratorListContext):
@@ -647,8 +670,11 @@ def convert_input(user_input):
         # 检查是否有初始化部分
         if init_stmt:
             init_var_name = init_stmt.declaratorList().declarator()[0].getChild(0).getText()  # 获取变量名
+            init_var_type = init_stmt.declarationSpecifier().typeSpecifier().getChild(0).getText()  # 获取变量类型
             init_value = init_stmt.declaratorList().declarator()[0].initializer().getChild(1).getText()  # 获取初始化值
             self.output += f"{self.getIndent()}{init_var_name} = {init_value}\n"
+
+            self.symbol_table.append([init_var_name, init_var_type, init_value, self.current_env + "->for_statement"])
 
         # 检查是否有条件部分
         if condition_stmt:
@@ -660,13 +686,12 @@ def convert_input(user_input):
         # 检查是否有迭代部分
         if iterator_stmt:
             iterator_var_name = iterator_stmt.getChild(1).getText()  # 获取变量名
-        self.indent +=1
+        self.indent += 1
         pass
 
     # Exit a parse tree produced by CPPParser#forStatement.
     def exitForStatement(self, ctx:CPPParser.ForStatementContext):
-        self.indent -=1
-
+        self.indent -= 1
         pass
 
 
