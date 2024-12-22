@@ -342,7 +342,6 @@ class CPPParserGUI:
                 messagebox.showinfo("提示", "结果已成功保存。")
             except Exception as e:
                 messagebox.showerror("错误", f"保存结果时发生错误：\n{e}")
-
     def clear_text(self):
         self.text_input.delete(1.0, tk.END)
         self.syntax_result_display.delete(1.0, tk.END)
@@ -412,29 +411,6 @@ class CPPParserGUI:
                 # os.remove(temp_script_path)
            
 def main():
-    cpp_code = """
-        #include <iostream>
-        #include <string>
-        using namespace std;
-        int main()
-        {
-        string s;
-        cin >> s;
-        bool ans = true;
-        int len = s.length();
-        for (int i = 0; i < len / 2; ++i)
-        {
-            if (s[i] != s[len - 1 - i]) ans = false;
-        }
-        if (ans)
-        {
-            cout << "True" << endl;
-        } else {
-            cout << "False" << endl;
-        }
-        return 0;
-        }
-    """
     root = tk.Tk()
     app = CPPParserGUI(root)
     root.mainloop()

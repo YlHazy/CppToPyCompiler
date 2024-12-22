@@ -64,6 +64,7 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#stlFileName.
     def enterStlFileName(self, ctx:CPPParser.StlFileNameContext):
+
         pass
 
     # Exit a parse tree produced by CPPParser#stlFileName.
@@ -119,10 +120,33 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#functionDeclaration.
     def enterFunctionDeclaration(self, ctx:CPPParser.FunctionDeclarationContext):
+        for child in ctx.getChild(0).children:  # 找到 typeSpecifier -> bool
+            if child.getText() == "bool":
+                return_type = "bool"
+        params = []
+        for param in ctx.getChild(3).children:  # paramDeclarationList
+            param_type = None
+            param_name = None
+        
+            if param.declarationSpecifier().typeSpecifier().getText() == "string":
+                param_type = "str"
+            param_name = param.declaratorList().getChild(0).Identifier().getText()
+
+
+            # 处理参数
+            if param_type and param_name:
+                # const 和 & 可以忽略，直接保存参数名和类型
+                params.append(f"{param_name}: {param_type}")
+        
+        # 将所有部分拼接成 Python 函数声明
+        param_str = ", ".join(params)
+        self.output += f"{self.getIndent()}def {ctx.Identifier().getText()}({param_str}) -> {return_type}:\n"
+        self.indent += 1
         pass
 
     # Exit a parse tree produced by CPPParser#functionDeclaration.
     def exitFunctionDeclaration(self, ctx:CPPParser.FunctionDeclarationContext):
+        self.indent -= 1
         pass
 
 
@@ -246,7 +270,8 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#declaratorList.
     def enterDeclaratorList(self, ctx:CPPParser.DeclaratorListContext):
-
+        if(ctx.parentCtx.parentCtx.getRuleIndex() == 10):
+            return
         # 获取变量名
         declarators = ctx.declarator()  # 获取所有声明的变量
         parent_rule = ctx.parentCtx.parentCtx.parentCtx.parentCtx.getRuleIndex() if ctx.parentCtx else ""
@@ -313,6 +338,7 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#stlSpecifier.
     def enterStlSpecifier(self, ctx:CPPParser.StlSpecifierContext):
+        raise NotImplementedError("enterStlSpecifier method is not implemented.")
         pass
 
     # Exit a parse tree produced by CPPParser#stlSpecifier.
@@ -377,6 +403,7 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#ifWhileConditionStatement.
     def enterIfWhileConditionStatement(self, ctx:CPPParser.IfWhileConditionStatementContext):
+
         pass
 
     # Exit a parse tree produced by CPPParser#ifWhileConditionStatement.
@@ -506,6 +533,9 @@ def convert_input(user_input):
 
             for child in ctx.getChild(0).children:
                 if child.getText() != "<<" and child.getText() != "cout":
+                    child_text = child.getText()
+                    if "<<" in child_text:
+                        child_text = child_text.replace("<<", " + ")
                     # 如果不是第一个子元素，加上加号
                     if not first:
                         self.output += " + "
@@ -514,7 +544,7 @@ def convert_input(user_input):
                         self.output += '"\\n"'
                         continue
                     # 将子元素的文本添加到输出
-                    self.output += f"{child.getText()}"
+                    self.output += f"{child_text}"
             
             self.output += ")\n"  # 结束print语句
 
@@ -576,10 +606,21 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#elseIfStatement.
     def enterElseIfStatement(self, ctx:CPPParser.ElseIfStatementContext):
+        self.indent -= 1
+        self.output += self.getIndent()
+        self.output += "elif "
+        condition = ctx.ifWhileConditionStatement()
+        if condition:
+            for child in condition.children:
+                self.output += child.getText()
+            self.output += ":\n"
+        self.indent += 1
+
         pass
 
     # Exit a parse tree produced by CPPParser#elseIfStatement.
     def exitElseIfStatement(self, ctx:CPPParser.ElseIfStatementContext):
+        self.indent -= 1
         pass
 
 
@@ -631,15 +672,37 @@ def convert_input(user_input):
 
     # Enter a parse tree produced by CPPParser#whileStatement.
     def enterWhileStatement(self, ctx:CPPParser.WhileStatementContext):
+        self.output += self.getIndent()
+        self.output += "while "
+        condition = ctx.ifWhileConditionStatement()
+        if condition:
+            for child in condition.children:
+                self.output += child.getText()
+            self.output += ":\n"
+        self.indent += 1
         pass
 
     # Exit a parse tree produced by CPPParser#whileStatement.
     def exitWhileStatement(self, ctx:CPPParser.WhileStatementContext):
+        self.indent -= 1
         pass
 
 
     # Enter a parse tree produced by CPPParser#endStatement.
     def enterEndStatement(self, ctx:CPPParser.EndStatementContext):
+        if ctx.getChild(0).getText() == "return":
+        # 获取返回值
+            return_value = None
+            # 访问 returnResult -> factor -> BooleanLiteral
+            for child in ctx.getChild(1).children:
+                if child.getChild(0).getText() == "false":
+                    return_value = "False"
+                elif child.getChild(0).getText() == "true":
+                    return_value = "True"
+        
+        # 生成 Python 的 return 语句
+        if return_value:
+            self.output += f"{self.getIndent()}return {return_value}\n"
         pass
 
     # Exit a parse tree produced by CPPParser#endStatement.
